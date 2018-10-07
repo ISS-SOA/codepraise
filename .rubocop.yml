@@ -1,0 +1,15 @@
+---
+AllCops:
+  TargetRubyVersion: 2.5
+
+# ignore block length in non-production code
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - spec/**/*
+
+# allow unsafe YAML loading in non-production code
+Security/YAMLLoad:
+  Enabled: true
+  Exclude:
+    - spec/**/*
