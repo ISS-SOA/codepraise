@@ -1,0 +1,339 @@
+---
+https://api.github.com/repos/soumyaray/YPBT-app: !ruby/object:HTTP::Response
+  version: '1.1'
+  uri: !ruby/object:HTTP::URI
+    uri: !ruby/object:Addressable::URI
+      validation_deferred: false
+      scheme: https
+      host: api.github.com
+      path: "/repos/soumyaray/YPBT-app"
+      authority: api.github.com
+      uri_string: https://api.github.com/repos/soumyaray/YPBT-app
+      password: 
+      user: 
+      port: 
+  status: !ruby/object:HTTP::Response::Status
+    code: 200
+  headers: !ruby/object:HTTP::Headers
+    pile:
+    - - Server
+      - GitHub.com
+    - - Date
+      - Sun, 07 Oct 2018 03:35:48 GMT
+    - - Content-Type
+      - application/json; charset=utf-8
+    - - Content-Length
+      - '14805'
+    - - Connection
+      - close
+    - - Status
+      - 200 OK
+    - - X-Ratelimit-Limit
+      - '5000'
+    - - X-Ratelimit-Remaining
+      - '4999'
+    - - X-Ratelimit-Reset
+      - '1538886948'
+    - - Cache-Control
+      - private, max-age=60, s-maxage=60
+    - - Vary
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+    - - Etag
+      - '"9360c29ad14ad6e02f2a199a12eaae26"'
+    - - Last-Modified
+      - Wed, 27 Sep 2017 09:31:53 GMT
+    - - X-Oauth-Scopes
+      - read:user, user:email
+    - - X-Accepted-Oauth-Scopes
+      - repo
+    - - X-Github-Media-Type
+      - github.v3; format=json
+    - - Access-Control-Expose-Headers
+      - ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+    - - Access-Control-Allow-Origin
+      - "*"
+    - - Strict-Transport-Security
+      - max-age=31536000; includeSubdomains; preload
+    - - X-Frame-Options
+      - deny
+    - - X-Content-Type-Options
+      - nosniff
+    - - X-Xss-Protection
+      - 1; mode=block
+    - - Referrer-Policy
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+    - - Content-Security-Policy
+      - default-src 'none'
+    - - X-Runtime-Rack
+      - '0.056751'
+    - - X-Github-Request-Id
+      - F86D:1E2E:239F0B2:56EE2E7:5BB97F14
+  proxy_headers: !ruby/object:HTTP::Headers
+    pile: []
+  content_type: !ruby/struct:HTTP::ContentType
+    mime_type: application/json
+    charset: utf-8
+  body: !ruby/object:HTTP::Response::Body
+    stream: &1 !ruby/object:HTTP::Connection
+      persistent: false
+      keep_alive_timeout: 5.0
+      pending_request: false
+      pending_response: false
+      failed_proxy_connect: false
+      buffer: me}","releases_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/releases{/id}","deployments_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/deployments","created_at":"2016-11-24T08:04:19Z","updated_at":"2016-12-17T01:14:09Z","pushed_at":"2017-11-04T02:04:14Z","git_url":"git://github.com/RubyStarts3/YPBT-app.git","ssh_url":"git@github.com:RubyStarts3/YPBT-app.git","clone_url":"https://github.com/RubyStarts3/YPBT-app.git","svn_url":"https://github.com/RubyStarts3/YPBT-app","homepage":"http://ypbt-app.herokuapp.com/","size":545,"stargazers_count":0,"watchers_count":0,"language":"Ruby","has_issues":true,"has_projects":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":3,"mirror_url":null,"archived":false,"open_issues_count":2,"license":null,"forks":3,"open_issues":2,"watchers":0,"default_branch":"master"},"network_count":3,"subscribers_count":1}
+      parser: !ruby/object:HTTP::Response::Parser
+        parser: !ruby/object:HTTP::Parser {}
+        finished: false
+        headers: 
+        chunk: 
+      socket: !ruby/object:HTTP::Timeout::Null
+        options: &2 {}
+        socket: !ruby/object:OpenSSL::SSL::SSLSocket
+          context: !ruby/object:OpenSSL::SSL::SSLContext
+            max_proto_version: 
+            min_proto_version: 769
+            verify_mode: 1
+            verify_hostname: true
+            cert_store: &3 !ruby/object:OpenSSL::X509::Store
+              verify_callback: 
+              error: 
+              error_string: 
+              chain: 
+              time: 
+          io: !ruby/object:TCPSocket {}
+          eof: false
+          rbuffer: ''
+          sync: true
+          hostname: api.github.com
+          sync_close: true
+          wbuffer: ''
+      keep_alive: false
+    connection: *1
+    streaming: false
+    contents: '{"id":104999627,"node_id":"MDEwOlJlcG9zaXRvcnkxMDQ5OTk2Mjc=","name":"YPBT-app","full_name":"soumyaray/YPBT-app","private":false,"owner":{"login":"soumyaray","id":1926704,"node_id":"MDQ6VXNlcjE5MjY3MDQ=","avatar_url":"https://avatars2.githubusercontent.com/u/1926704?v=4","gravatar_id":"","url":"https://api.github.com/users/soumyaray","html_url":"https://github.com/soumyaray","followers_url":"https://api.github.com/users/soumyaray/followers","following_url":"https://api.github.com/users/soumyaray/following{/other_user}","gists_url":"https://api.github.com/users/soumyaray/gists{/gist_id}","starred_url":"https://api.github.com/users/soumyaray/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/soumyaray/subscriptions","organizations_url":"https://api.github.com/users/soumyaray/orgs","repos_url":"https://api.github.com/users/soumyaray/repos","events_url":"https://api.github.com/users/soumyaray/events{/privacy}","received_events_url":"https://api.github.com/users/soumyaray/received_events","type":"User","site_admin":false},"html_url":"https://github.com/soumyaray/YPBT-app","description":"Tag
+      your favorite moments on YouTube Videos.","fork":true,"url":"https://api.github.com/repos/soumyaray/YPBT-app","forks_url":"https://api.github.com/repos/soumyaray/YPBT-app/forks","keys_url":"https://api.github.com/repos/soumyaray/YPBT-app/keys{/key_id}","collaborators_url":"https://api.github.com/repos/soumyaray/YPBT-app/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/soumyaray/YPBT-app/teams","hooks_url":"https://api.github.com/repos/soumyaray/YPBT-app/hooks","issue_events_url":"https://api.github.com/repos/soumyaray/YPBT-app/issues/events{/number}","events_url":"https://api.github.com/repos/soumyaray/YPBT-app/events","assignees_url":"https://api.github.com/repos/soumyaray/YPBT-app/assignees{/user}","branches_url":"https://api.github.com/repos/soumyaray/YPBT-app/branches{/branch}","tags_url":"https://api.github.com/repos/soumyaray/YPBT-app/tags","blobs_url":"https://api.github.com/repos/soumyaray/YPBT-app/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/soumyaray/YPBT-app/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/soumyaray/YPBT-app/git/refs{/sha}","trees_url":"https://api.github.com/repos/soumyaray/YPBT-app/git/trees{/sha}","statuses_url":"https://api.github.com/repos/soumyaray/YPBT-app/statuses/{sha}","languages_url":"https://api.github.com/repos/soumyaray/YPBT-app/languages","stargazers_url":"https://api.github.com/repos/soumyaray/YPBT-app/stargazers","contributors_url":"https://api.github.com/repos/soumyaray/YPBT-app/contributors","subscribers_url":"https://api.github.com/repos/soumyaray/YPBT-app/subscribers","subscription_url":"https://api.github.com/repos/soumyaray/YPBT-app/subscription","commits_url":"https://api.github.com/repos/soumyaray/YPBT-app/commits{/sha}","git_commits_url":"https://api.github.com/repos/soumyaray/YPBT-app/git/commits{/sha}","comments_url":"https://api.github.com/repos/soumyaray/YPBT-app/comments{/number}","issue_comment_url":"https://api.github.com/repos/soumyaray/YPBT-app/issues/comments{/number}","contents_url":"https://api.github.com/repos/soumyaray/YPBT-app/contents/{+path}","compare_url":"https://api.github.com/repos/soumyaray/YPBT-app/compare/{base}...{head}","merges_url":"https://api.github.com/repos/soumyaray/YPBT-app/merges","archive_url":"https://api.github.com/repos/soumyaray/YPBT-app/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/soumyaray/YPBT-app/downloads","issues_url":"https://api.github.com/repos/soumyaray/YPBT-app/issues{/number}","pulls_url":"https://api.github.com/repos/soumyaray/YPBT-app/pulls{/number}","milestones_url":"https://api.github.com/repos/soumyaray/YPBT-app/milestones{/number}","notifications_url":"https://api.github.com/repos/soumyaray/YPBT-app/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/soumyaray/YPBT-app/labels{/name}","releases_url":"https://api.github.com/repos/soumyaray/YPBT-app/releases{/id}","deployments_url":"https://api.github.com/repos/soumyaray/YPBT-app/deployments","created_at":"2017-09-27T09:31:51Z","updated_at":"2017-09-27T09:31:53Z","pushed_at":"2017-01-08T18:39:51Z","git_url":"git://github.com/soumyaray/YPBT-app.git","ssh_url":"git@github.com:soumyaray/YPBT-app.git","clone_url":"https://github.com/soumyaray/YPBT-app.git","svn_url":"https://github.com/soumyaray/YPBT-app","homepage":"http://ypbt-app.herokuapp.com/","size":551,"stargazers_count":0,"watchers_count":0,"language":"Ruby","has_issues":false,"has_projects":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":0,"mirror_url":null,"archived":false,"open_issues_count":0,"license":null,"forks":0,"open_issues":0,"watchers":0,"default_branch":"master","permissions":{"admin":true,"push":true,"pull":true},"parent":{"id":74651168,"node_id":"MDEwOlJlcG9zaXRvcnk3NDY1MTE2OA==","name":"YPBT-app","full_name":"RubyStarts3/YPBT-app","private":false,"owner":{"login":"RubyStarts3","id":22574553,"node_id":"MDEyOk9yZ2FuaXphdGlvbjIyNTc0NTUz","avatar_url":"https://avatars1.githubusercontent.com/u/22574553?v=4","gravatar_id":"","url":"https://api.github.com/users/RubyStarts3","html_url":"https://github.com/RubyStarts3","followers_url":"https://api.github.com/users/RubyStarts3/followers","following_url":"https://api.github.com/users/RubyStarts3/following{/other_user}","gists_url":"https://api.github.com/users/RubyStarts3/gists{/gist_id}","starred_url":"https://api.github.com/users/RubyStarts3/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/RubyStarts3/subscriptions","organizations_url":"https://api.github.com/users/RubyStarts3/orgs","repos_url":"https://api.github.com/users/RubyStarts3/repos","events_url":"https://api.github.com/users/RubyStarts3/events{/privacy}","received_events_url":"https://api.github.com/users/RubyStarts3/received_events","type":"Organization","site_admin":false},"html_url":"https://github.com/RubyStarts3/YPBT-app","description":"Tag
+      your favorite moments on YouTube Videos.","fork":false,"url":"https://api.github.com/repos/RubyStarts3/YPBT-app","forks_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/forks","keys_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/keys{/key_id}","collaborators_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/teams","hooks_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/hooks","issue_events_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/issues/events{/number}","events_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/events","assignees_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/assignees{/user}","branches_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/branches{/branch}","tags_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/tags","blobs_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/git/refs{/sha}","trees_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/git/trees{/sha}","statuses_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/statuses/{sha}","languages_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/languages","stargazers_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/stargazers","contributors_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/contributors","subscribers_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/subscribers","subscription_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/subscription","commits_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/commits{/sha}","git_commits_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/git/commits{/sha}","comments_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/comments{/number}","issue_comment_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/issues/comments{/number}","contents_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/contents/{+path}","compare_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/compare/{base}...{head}","merges_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/merges","archive_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/downloads","issues_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/issues{/number}","pulls_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/pulls{/number}","milestones_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/milestones{/number}","notifications_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/labels{/name}","releases_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/releases{/id}","deployments_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/deployments","created_at":"2016-11-24T08:04:19Z","updated_at":"2016-12-17T01:14:09Z","pushed_at":"2017-11-04T02:04:14Z","git_url":"git://github.com/RubyStarts3/YPBT-app.git","ssh_url":"git@github.com:RubyStarts3/YPBT-app.git","clone_url":"https://github.com/RubyStarts3/YPBT-app.git","svn_url":"https://github.com/RubyStarts3/YPBT-app","homepage":"http://ypbt-app.herokuapp.com/","size":545,"stargazers_count":0,"watchers_count":0,"language":"Ruby","has_issues":true,"has_projects":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":3,"mirror_url":null,"archived":false,"open_issues_count":2,"license":null,"forks":3,"open_issues":2,"watchers":0,"default_branch":"master"},"source":{"id":74651168,"node_id":"MDEwOlJlcG9zaXRvcnk3NDY1MTE2OA==","name":"YPBT-app","full_name":"RubyStarts3/YPBT-app","private":false,"owner":{"login":"RubyStarts3","id":22574553,"node_id":"MDEyOk9yZ2FuaXphdGlvbjIyNTc0NTUz","avatar_url":"https://avatars1.githubusercontent.com/u/22574553?v=4","gravatar_id":"","url":"https://api.github.com/users/RubyStarts3","html_url":"https://github.com/RubyStarts3","followers_url":"https://api.github.com/users/RubyStarts3/followers","following_url":"https://api.github.com/users/RubyStarts3/following{/other_user}","gists_url":"https://api.github.com/users/RubyStarts3/gists{/gist_id}","starred_url":"https://api.github.com/users/RubyStarts3/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/RubyStarts3/subscriptions","organizations_url":"https://api.github.com/users/RubyStarts3/orgs","repos_url":"https://api.github.com/users/RubyStarts3/repos","events_url":"https://api.github.com/users/RubyStarts3/events{/privacy}","received_events_url":"https://api.github.com/users/RubyStarts3/received_events","type":"Organization","site_admin":false},"html_url":"https://github.com/RubyStarts3/YPBT-app","description":"Tag
+      your favorite moments on YouTube Videos.","fork":false,"url":"https://api.github.com/repos/RubyStarts3/YPBT-app","forks_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/forks","keys_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/keys{/key_id}","collaborators_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/teams","hooks_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/hooks","issue_events_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/issues/events{/number}","events_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/events","assignees_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/assignees{/user}","branches_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/branches{/branch}","tags_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/tags","blobs_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/git/refs{/sha}","trees_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/git/trees{/sha}","statuses_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/statuses/{sha}","languages_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/languages","stargazers_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/stargazers","contributors_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/contributors","subscribers_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/subscribers","subscription_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/subscription","commits_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/commits{/sha}","git_commits_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/git/commits{/sha}","comments_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/comments{/number}","issue_comment_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/issues/comments{/number}","contents_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/contents/{+path}","compare_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/compare/{base}...{head}","merges_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/merges","archive_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/downloads","issues_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/issues{/number}","pulls_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/pulls{/number}","milestones_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/milestones{/number}","notifications_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/labels{/name}","releases_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/releases{/id}","deployments_url":"https://api.github.com/repos/RubyStarts3/YPBT-app/deployments","created_at":"2016-11-24T08:04:19Z","updated_at":"2016-12-17T01:14:09Z","pushed_at":"2017-11-04T02:04:14Z","git_url":"git://github.com/RubyStarts3/YPBT-app.git","ssh_url":"git@github.com:RubyStarts3/YPBT-app.git","clone_url":"https://github.com/RubyStarts3/YPBT-app.git","svn_url":"https://github.com/RubyStarts3/YPBT-app","homepage":"http://ypbt-app.herokuapp.com/","size":545,"stargazers_count":0,"watchers_count":0,"language":"Ruby","has_issues":true,"has_projects":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":3,"mirror_url":null,"archived":false,"open_issues_count":2,"license":null,"forks":3,"open_issues":2,"watchers":0,"default_branch":"master"},"network_count":3,"subscribers_count":1}'
+    encoding: !ruby/encoding UTF-8
+https://api.github.com/repos/soumyaray/YPBT-app/contributors: !ruby/object:HTTP::Response
+  version: '1.1'
+  uri: !ruby/object:HTTP::URI
+    uri: !ruby/object:Addressable::URI
+      validation_deferred: false
+      scheme: https
+      host: api.github.com
+      path: "/repos/soumyaray/YPBT-app/contributors"
+      authority: api.github.com
+      uri_string: https://api.github.com/repos/soumyaray/YPBT-app/contributors
+      password: 
+      user: 
+      port: 
+  status: !ruby/object:HTTP::Response::Status
+    code: 200
+  headers: !ruby/object:HTTP::Headers
+    pile:
+    - - Server
+      - GitHub.com
+    - - Date
+      - Sun, 07 Oct 2018 03:38:26 GMT
+    - - Content-Type
+      - application/json; charset=utf-8
+    - - Content-Length
+      - '2783'
+    - - Connection
+      - close
+    - - Status
+      - 200 OK
+    - - X-Ratelimit-Limit
+      - '5000'
+    - - X-Ratelimit-Remaining
+      - '4998'
+    - - X-Ratelimit-Reset
+      - '1538886948'
+    - - Cache-Control
+      - private, max-age=60, s-maxage=60
+    - - Vary
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+    - - Etag
+      - '"b4f880f0cde2197379272daabf7d85f6"'
+    - - Last-Modified
+      - Wed, 27 Sep 2017 09:31:53 GMT
+    - - X-Oauth-Scopes
+      - read:user, user:email
+    - - X-Accepted-Oauth-Scopes
+      - ''
+    - - X-Github-Media-Type
+      - github.v3; format=json
+    - - Access-Control-Expose-Headers
+      - ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+    - - Access-Control-Allow-Origin
+      - "*"
+    - - Strict-Transport-Security
+      - max-age=31536000; includeSubdomains; preload
+    - - X-Frame-Options
+      - deny
+    - - X-Content-Type-Options
+      - nosniff
+    - - X-Xss-Protection
+      - 1; mode=block
+    - - Referrer-Policy
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+    - - Content-Security-Policy
+      - default-src 'none'
+    - - X-Runtime-Rack
+      - '0.058914'
+    - - X-Github-Request-Id
+      - F88E:1E2E:239FF03:56F0B28:5BB97FB2
+  proxy_headers: !ruby/object:HTTP::Headers
+    pile: []
+  content_type: !ruby/struct:HTTP::ContentType
+    mime_type: application/json
+    charset: utf-8
+  body: !ruby/object:HTTP::Response::Body
+    stream: &4 !ruby/object:HTTP::Connection
+      persistent: false
+      keep_alive_timeout: 5.0
+      pending_request: false
+      pending_response: false
+      failed_proxy_connect: false
+      buffer: KunLin/orgs","repos_url":"https://api.github.com/users/SOA-KunLin/repos","events_url":"https://api.github.com/users/SOA-KunLin/events{/privacy}","received_events_url":"https://api.github.com/users/SOA-KunLin/received_events","type":"User","site_admin":false,"contributions":40},{"login":"luyimin","id":17100800,"node_id":"MDQ6VXNlcjE3MTAwODAw","avatar_url":"https://avatars1.githubusercontent.com/u/17100800?v=4","gravatar_id":"","url":"https://api.github.com/users/luyimin","html_url":"https://github.com/luyimin","followers_url":"https://api.github.com/users/luyimin/followers","following_url":"https://api.github.com/users/luyimin/following{/other_user}","gists_url":"https://api.github.com/users/luyimin/gists{/gist_id}","starred_url":"https://api.github.com/users/luyimin/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/luyimin/subscriptions","organizations_url":"https://api.github.com/users/luyimin/orgs","repos_url":"https://api.github.com/users/luyimin/repos","events_url":"https://api.github.com/users/luyimin/events{/privacy}","received_events_url":"https://api.github.com/users/luyimin/received_events","type":"User","site_admin":false,"contributions":21}]
+      parser: !ruby/object:HTTP::Response::Parser
+        parser: !ruby/object:HTTP::Parser {}
+        finished: false
+        headers: 
+        chunk: 
+      socket: !ruby/object:HTTP::Timeout::Null
+        options: *2
+        socket: !ruby/object:OpenSSL::SSL::SSLSocket
+          context: !ruby/object:OpenSSL::SSL::SSLContext
+            max_proto_version: 
+            min_proto_version: 769
+            verify_mode: 1
+            verify_hostname: true
+            cert_store: *3
+          io: !ruby/object:TCPSocket {}
+          eof: false
+          rbuffer: ''
+          sync: true
+          hostname: api.github.com
+          sync_close: true
+          wbuffer: ''
+      keep_alive: false
+    connection: *4
+    streaming: false
+    contents: '[{"login":"Yuan-Yu","id":8809778,"node_id":"MDQ6VXNlcjg4MDk3Nzg=","avatar_url":"https://avatars2.githubusercontent.com/u/8809778?v=4","gravatar_id":"","url":"https://api.github.com/users/Yuan-Yu","html_url":"https://github.com/Yuan-Yu","followers_url":"https://api.github.com/users/Yuan-Yu/followers","following_url":"https://api.github.com/users/Yuan-Yu/following{/other_user}","gists_url":"https://api.github.com/users/Yuan-Yu/gists{/gist_id}","starred_url":"https://api.github.com/users/Yuan-Yu/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/Yuan-Yu/subscriptions","organizations_url":"https://api.github.com/users/Yuan-Yu/orgs","repos_url":"https://api.github.com/users/Yuan-Yu/repos","events_url":"https://api.github.com/users/Yuan-Yu/events{/privacy}","received_events_url":"https://api.github.com/users/Yuan-Yu/received_events","type":"User","site_admin":false,"contributions":48},{"login":"SOA-KunLin","id":22166763,"node_id":"MDQ6VXNlcjIyMTY2NzYz","avatar_url":"https://avatars2.githubusercontent.com/u/22166763?v=4","gravatar_id":"","url":"https://api.github.com/users/SOA-KunLin","html_url":"https://github.com/SOA-KunLin","followers_url":"https://api.github.com/users/SOA-KunLin/followers","following_url":"https://api.github.com/users/SOA-KunLin/following{/other_user}","gists_url":"https://api.github.com/users/SOA-KunLin/gists{/gist_id}","starred_url":"https://api.github.com/users/SOA-KunLin/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/SOA-KunLin/subscriptions","organizations_url":"https://api.github.com/users/SOA-KunLin/orgs","repos_url":"https://api.github.com/users/SOA-KunLin/repos","events_url":"https://api.github.com/users/SOA-KunLin/events{/privacy}","received_events_url":"https://api.github.com/users/SOA-KunLin/received_events","type":"User","site_admin":false,"contributions":40},{"login":"luyimin","id":17100800,"node_id":"MDQ6VXNlcjE3MTAwODAw","avatar_url":"https://avatars1.githubusercontent.com/u/17100800?v=4","gravatar_id":"","url":"https://api.github.com/users/luyimin","html_url":"https://github.com/luyimin","followers_url":"https://api.github.com/users/luyimin/followers","following_url":"https://api.github.com/users/luyimin/following{/other_user}","gists_url":"https://api.github.com/users/luyimin/gists{/gist_id}","starred_url":"https://api.github.com/users/luyimin/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/luyimin/subscriptions","organizations_url":"https://api.github.com/users/luyimin/orgs","repos_url":"https://api.github.com/users/luyimin/repos","events_url":"https://api.github.com/users/luyimin/events{/privacy}","received_events_url":"https://api.github.com/users/luyimin/received_events","type":"User","site_admin":false,"contributions":21}]'
+    encoding: !ruby/encoding UTF-8
+https://api.github.com/soumyaray/foobar: !ruby/object:HTTP::Response
+  version: '1.1'
+  uri: !ruby/object:HTTP::URI
+    uri: !ruby/object:Addressable::URI
+      validation_deferred: false
+      scheme: https
+      host: api.github.com
+      path: "/soumyaray/foobar"
+      authority: api.github.com
+      uri_string: https://api.github.com/soumyaray/foobar
+      password: 
+      user: 
+      port: 
+  status: !ruby/object:HTTP::Response::Status
+    code: 404
+  headers: !ruby/object:HTTP::Headers
+    pile:
+    - - Server
+      - GitHub.com
+    - - Date
+      - Sun, 07 Oct 2018 03:40:18 GMT
+    - - Content-Type
+      - application/json; charset=utf-8
+    - - Content-Length
+      - '77'
+    - - Connection
+      - close
+    - - Status
+      - 404 Not Found
+    - - X-Ratelimit-Limit
+      - '5000'
+    - - X-Ratelimit-Remaining
+      - '4997'
+    - - X-Ratelimit-Reset
+      - '1538886948'
+    - - X-Oauth-Scopes
+      - read:user, user:email
+    - - X-Accepted-Oauth-Scopes
+      - repo
+    - - X-Github-Media-Type
+      - github.v3; format=json
+    - - Access-Control-Expose-Headers
+      - ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+    - - Access-Control-Allow-Origin
+      - "*"
+    - - Strict-Transport-Security
+      - max-age=31536000; includeSubdomains; preload
+    - - X-Frame-Options
+      - deny
+    - - X-Content-Type-Options
+      - nosniff
+    - - X-Xss-Protection
+      - 1; mode=block
+    - - Referrer-Policy
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+    - - Content-Security-Policy
+      - default-src 'none'
+    - - X-Runtime-Rack
+      - '0.014842'
+    - - X-Github-Request-Id
+      - F8A8:1E2E:23A09D7:56F28E7:5BB98021
+  proxy_headers: !ruby/object:HTTP::Headers
+    pile: []
+  content_type: !ruby/struct:HTTP::ContentType
+    mime_type: application/json
+    charset: utf-8
+  body: !ruby/object:HTTP::Response::Body
+    stream: &5 !ruby/object:HTTP::Connection
+      persistent: false
+      keep_alive_timeout: 5.0
+      pending_request: false
+      pending_response: false
+      failed_proxy_connect: false
+      buffer: "HTTP/1.1 404 Not Found\r\nServer: GitHub.com\r\nDate: Sun, 07 Oct 2018
+        03:40:18 GMT\r\nContent-Type: application/json; charset=utf-8\r\nContent-Length:
+        77\r\nConnection: close\r\nStatus: 404 Not Found\r\nX-RateLimit-Limit: 5000\r\nX-RateLimit-Remaining:
+        4997\r\nX-RateLimit-Reset: 1538886948\r\nX-OAuth-Scopes: read:user, user:email\r\nX-Accepted-OAuth-Scopes:
+        repo\r\nX-GitHub-Media-Type: github.v3; format=json\r\nAccess-Control-Expose-Headers:
+        ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval\r\nAccess-Control-Allow-Origin:
+        *\r\nStrict-Transport-Security: max-age=31536000; includeSubdomains; preload\r\nX-Frame-Options:
+        deny\r\nX-Content-Type-Options: nosniff\r\nX-XSS-Protection: 1; mode=block\r\nReferrer-Policy:
+        origin-when-cross-origin, strict-origin-when-cross-origin\r\nContent-Security-Policy:
+        default-src 'none'\r\nX-Runtime-rack: 0.014842\r\nX-GitHub-Request-Id: F8A8:1E2E:23A09D7:56F28E7:5BB98021\r\n\r\n{\"message\":\"Not
+        Found\",\"documentation_url\":\"https://developer.github.com/v3\"}"
+      parser: !ruby/object:HTTP::Response::Parser
+        parser: !ruby/object:HTTP::Parser {}
+        finished: false
+        headers: 
+        chunk: 
+      socket: !ruby/object:HTTP::Timeout::Null
+        options: *2
+        socket: !ruby/object:OpenSSL::SSL::SSLSocket
+          context: !ruby/object:OpenSSL::SSL::SSLContext
+            max_proto_version: 
+            min_proto_version: 769
+            verify_mode: 1
+            verify_hostname: true
+            cert_store: *3
+          io: !ruby/object:TCPSocket {}
+          eof: false
+          rbuffer: ''
+          sync: true
+          hostname: api.github.com
+          sync_close: true
+          wbuffer: ''
+      keep_alive: false
+    connection: *5
+    streaming: false
+    contents: '{"message":"Not Found","documentation_url":"https://developer.github.com/v3"}'
+    encoding: !ruby/encoding UTF-8

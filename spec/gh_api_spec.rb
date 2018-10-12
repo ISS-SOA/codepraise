@@ -1,17 +1,25 @@
 # frozen_string_literal: false
 
-require 'minitest/autorun'
-require 'minitest/rg'
-require 'yaml'
-require_relative '../lib/github_api.rb'
+require_relative 'spec_helper.rb'
 
 describe 'Tests Github API library' do
-  USERNAME = 'soumyaray'.freeze
-  PROJECT_NAME = 'YPBT-app'.freeze
-  CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
-  GH_TOKEN = CONFIG['GH_TOKEN']
-  CORRECT = YAML.safe_load(File.read('spec/fixtures/gh_results.yml'))
-  RESPONSE = YAML.load(File.read('spec/fixtures/gh_response.yml'))
+  VCR.configure do |c|
+    c.cassette_library_dir = CASSETTES_FOLDER
+    c.hook_into :webmock
+
+    c.filter_sensitive_data('<GITHUB_TOKEN>') { GH_TOKEN }
+    c.filter_sensitive_data('<GITHUB_TOKEN_ESC>') { CGI.escape(GH_TOKEN) }
+  end
+
+  before do
+    VCR.insert_cassette CASSETTE_FILE,
+                        record: :new_episodes,
+                        match_requests_on: %i[method uri headers]
+  end
+
+  after do
+    VCR.eject_cassette
+  end
 
   describe 'Project information' do
     it 'HAPPY: should provide correct project attributes' do
@@ -21,23 +29,23 @@ describe 'Tests Github API library' do
       _(project.git_url).must_equal CORRECT['git_url']
     end
 
-    it 'SAD: should raise exception on incorrect project' do
+    it 'BAD: should raise exception on incorrect project' do
       proc do
         CodePraise::GithubAPI.new(GH_TOKEN).project('soumyaray', 'foobar')
-      end.must_raise CodePraise::GithubAPI::Errors::NotFound
+      end.must_raise CodePraise::GithubAPI::Response::NotFound
     end
 
-    it 'SAD: should raise exception when unauthorized' do
+    it 'BAD: should raise exception when unauthorized' do
       proc do
         CodePraise::GithubAPI.new('BAD_TOKEN').project('soumyaray', 'foobar')
-      end.must_raise CodePraise::GithubAPI::Errors::Unauthorized
+      end.must_raise CodePraise::GithubAPI::Response::Unauthorized
     end
   end
 
   describe 'Contributor information' do
     before do
       @project = CodePraise::GithubAPI.new(GH_TOKEN)
-                                         .project(USERNAME, PROJECT_NAME)
+                                      .project(USERNAME, PROJECT_NAME)
     end
 
     it 'HAPPY: should recognize owner' do
