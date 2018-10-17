@@ -23,33 +23,40 @@ describe 'Tests Github API library' do
 
   describe 'Project information' do
     it 'HAPPY: should provide correct project attributes' do
-      project = CodePraise::GithubAPI.new(GH_TOKEN)
-                                     .project(USERNAME, PROJECT_NAME)
+      project =
+        CodePraise::Github::ProjectMapper
+          .new(GH_TOKEN)
+          .find(USERNAME, PROJECT_NAME)
       _(project.size).must_equal CORRECT['size']
       _(project.git_url).must_equal CORRECT['git_url']
     end
 
     it 'BAD: should raise exception on incorrect project' do
       proc do
-        CodePraise::GithubAPI.new(GH_TOKEN).project('soumyaray', 'foobar')
-      end.must_raise CodePraise::GithubAPI::Response::NotFound
+        CodePraise::Github::ProjectMapper
+          .new(GH_TOKEN)
+          .find(USERNAME, 'foobar')
+      end.must_raise CodePraise::Github::Api::Response::NotFound
     end
 
     it 'BAD: should raise exception when unauthorized' do
       proc do
-        CodePraise::GithubAPI.new('BAD_TOKEN').project('soumyaray', 'foobar')
-      end.must_raise CodePraise::GithubAPI::Response::Unauthorized
+        CodePraise::Github::ProjectMapper
+          .new('BAD_TOKEN')
+          .find(USERNAME, PROJECT_NAME)
+      end.must_raise CodePraise::Github::Api::Response::Unauthorized
     end
   end
 
   describe 'Contributor information' do
     before do
-      @project = CodePraise::GithubAPI.new(GH_TOKEN)
-                                      .project(USERNAME, PROJECT_NAME)
+      @project = CodePraise::Github::ProjectMapper
+        .new(GH_TOKEN)
+        .find(USERNAME, PROJECT_NAME)
     end
 
     it 'HAPPY: should recognize owner' do
-      _(@project.owner).must_be_kind_of CodePraise::Contributor
+      _(@project.owner).must_be_kind_of CodePraise::Entity::Member
     end
 
     it 'HAPPY: should identify owner' do
@@ -57,11 +64,11 @@ describe 'Tests Github API library' do
       _(@project.owner.username).must_equal CORRECT['owner']['login']
     end
 
-    it 'HAPPY: should identify contributors' do
-      contributors = @project.contributors
-      _(contributors.count).must_equal CORRECT['contributors'].count
+    it 'HAPPY: should identify members' do
+      members = @project.members
+      _(members.count).must_equal CORRECT['contributors'].count
 
-      usernames = contributors.map(&:username)
+      usernames = members.map(&:username)
       correct_usernames = CORRECT['contributors'].map { |c| c['login'] }
       _(usernames).must_equal correct_usernames
     end

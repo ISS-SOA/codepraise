@@ -10,7 +10,7 @@ require 'minitest/rg'
 require 'vcr'
 require 'webmock'
 
-require_relative '../lib/github_api.rb'
+require_relative '../init.rb'
 
 USERNAME = 'soumyaray'.freeze
 PROJECT_NAME = 'YPBT-app'.freeze

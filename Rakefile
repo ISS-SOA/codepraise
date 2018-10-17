@@ -8,7 +8,12 @@ end
 
 desc 'run tests'
 task :spec do
-  sh 'ruby spec/gh_api_spec.rb'
+  sh 'ruby spec/gateway_github_spec.rb'
+end
+
+desc 'Keep rerunning tests upon changes'
+task :respec do
+  sh "rerun -c 'rake spec' --ignore 'coverage/*'"
 end
 
 namespace :vcr do
@@ -21,10 +26,10 @@ namespace :vcr do
 end
 
 namespace :quality do
-  CODE = 'lib/'
+  CODE = 'infrastructure/ domain/'
 
   desc 'run all quality checks'
-  task all: %i[rubocop reek flog]
+  task :all => [:rubocop, :reek, :flog]
 
   task :rubocop do
     sh 'rubocop'

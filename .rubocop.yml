@@ -16,3 +16,17 @@ Security/YAMLLoad:
   Enabled: true
   Exclude:
     - spec/**/*
+
+Style/HashSyntax:
+  Enabled: true
+  Exclude:
+    - Rakefile
+
+Style/SymbolArray:
+  Enabled: true
+  Exclude:
+    - Rakefile
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+  EnforcedStyle: indented
