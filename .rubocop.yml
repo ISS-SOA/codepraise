@@ -4,6 +4,8 @@ AllCops:
   Include:
     - 'Gemfile'
     - 'Rakefile'
+  Exclude:
+    - '_snippets/**/*.rb'
 
 # ignore block length in non-production code
 Metrics/BlockLength:

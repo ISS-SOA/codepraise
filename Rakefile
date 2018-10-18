@@ -16,6 +16,10 @@ task :respec do
   sh "rerun -c 'rake spec' --ignore 'coverage/*'"
 end
 
+task :rerack do
+  sh "rerun -c rackup --ignore 'coverage/*'"
+end
+
 namespace :vcr do
   desc 'delete cassette fixtures'
   task :wipe do

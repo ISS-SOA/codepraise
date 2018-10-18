@@ -3,7 +3,12 @@
 source 'https://rubygems.org'
 ruby '2.5.1'
 
-# Data gems
+# Web application related
+gem 'puma', '~> 3.11'
+gem 'roda', '~> 3.8'
+gem 'slim', '~> 3.0'
+
+# Entity gems
 gem 'dry-struct', '~> 0.5'
 gem 'dry-types', '~> 0.5'
 

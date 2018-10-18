@@ -1,0 +1,18 @@
+.container
+  form role="form" action="/project" method='POST' id='show-project-form'
+    .row.vertical-align.query-bar
+      .col-md-2.col-sm-3
+        .text-right Github URL:
+      .col-md-8.col-sm-6
+        input { 
+          type='text' name='github_url'
+          id='github_url_input' class="form-control"
+          placeholder="e.g. https://www.github.com/soumyaray/YPBT-app"
+        }
+      .col-md-2.col-sm-3
+        button { 
+          type='submit' id='repo-form-submit' class='submit' 
+          value='submit' class="btn btn-success" 
+        } Show Project
+    .row
+      .col-md-12.blank-row

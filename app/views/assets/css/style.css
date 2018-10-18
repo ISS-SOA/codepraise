@@ -1,0 +1,61 @@
+h1 {
+  font-weight: bold;
+}
+
+.top-buffer { margin-top:20px; }
+
+.posting.body {
+  font-size: 1.2em;
+}
+
+.project.attribute {
+  font-weight: bold;
+}
+
+.project.detail {
+  color: grey;
+}
+
+.project.owner {
+  font-weight: bold
+}
+
+.project.name {
+  
+}
+
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.vertical-align {
+  display: flex;
+  flex-direction: row;
+}
+
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Optional, to align inner items 
+                              horizontally inside the column */
+}
+
+.top-buffer { margin-top:20px; }
+
+.blank-row {
+  height: 30px;
+}
+
+.query-bar {
+  background-color: #EEEEEE;
+  padding: 5px 5px 5px 5px;
+}
+
+footer {
+  padding: 0.5in;
+  font-size:11px;
+  color:rgb(100, 100, 100);
+}

@@ -9,6 +9,7 @@ require 'minitest/autorun'
 require 'minitest/rg'
 require 'vcr'
 require 'webmock'
+require 'pry' # for debugging
 
 require_relative '../init.rb'
 

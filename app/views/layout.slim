@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    title CodePraise
+
+    / Bootstrap CSS and theme (United Theme)
+    link{
+      href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/cerulean/bootstrap.min.css"
+      rel="stylesheet" integrity="sha384-qVp3sGZJcZdk20BIG6O0Sb0sYRyedif3+Z8bZtQueBW/g7Dp67a0XdiMmmWCCm82"
+      crossorigin="anonymous"
+    }
+
+    / Custom CSS
+    / link rel='stylesheet' href='/presentation/assets/css/style.css'
+    == assets(:css)
+  body
+    / JQuery
+    script{ 
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+      crossorigin="anonymous" 
+    }
+
+    / Popper
+    script{ 
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous" 
+    }
+
+    / Bootstrap
+    script{
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    }
+
+    .container id='html_body'
+      section
+        .row style="vertical-align: middle;"
+          .col-12
+            h1 
+              a href="/" CodePraise
+
+      section
+        == yield
+
+      footer
+        = "CodePraise is made for demonstration purposes. We cannot warrant full correctness of all content. CodePraise uses cookies for sessions but does not track users."

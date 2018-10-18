@@ -58,6 +58,10 @@ module CodePraise
           MemberMapper.build_entity(@data['owner'])
         end
 
+        def url
+          @data['html_url']
+        end
+
         def git_url
           @data['git_url']
         end
