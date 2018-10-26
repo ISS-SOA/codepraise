@@ -1,40 +1,32 @@
 # frozen_string_literal: false
 
 require_relative 'spec_helper.rb'
+require_relative 'helpers/vcr_helper.rb'
 
 describe 'Tests Github API library' do
-  VCR.configure do |c|
-    c.cassette_library_dir = CASSETTES_FOLDER
-    c.hook_into :webmock
-
-    c.filter_sensitive_data('<GITHUB_TOKEN>') { GH_TOKEN }
-    c.filter_sensitive_data('<GITHUB_TOKEN_ESC>') { CGI.escape(GH_TOKEN) }
-  end
-
   before do
-    VCR.insert_cassette CASSETTE_FILE,
-                        record: :new_episodes,
-                        match_requests_on: %i[method uri headers]
+    VcrHelper.configure_vcr_for_github
   end
 
   after do
-    VCR.eject_cassette
+    VcrHelper.eject_vcr
   end
 
   describe 'Project information' do
     it 'HAPPY: should provide correct project attributes' do
       project =
         CodePraise::Github::ProjectMapper
-          .new(GH_TOKEN)
+          .new(GITHUB_TOKEN)
           .find(USERNAME, PROJECT_NAME)
       _(project.size).must_equal CORRECT['size']
-      _(project.git_url).must_equal CORRECT['git_url']
+      _(project.ssh_url).must_equal CORRECT['git_url']
+      # _(project.http_url).must_equal CORRECT['html_url']
     end
 
     it 'BAD: should raise exception on incorrect project' do
       proc do
         CodePraise::Github::ProjectMapper
-          .new(GH_TOKEN)
+          .new(GITHUB_TOKEN)
           .find(USERNAME, 'foobar')
       end.must_raise CodePraise::Github::Api::Response::NotFound
     end
@@ -51,7 +43,7 @@ describe 'Tests Github API library' do
   describe 'Contributor information' do
     before do
       @project = CodePraise::Github::ProjectMapper
-        .new(GH_TOKEN)
+        .new(GITHUB_TOKEN)
         .find(USERNAME, PROJECT_NAME)
     end
 
@@ -65,7 +57,7 @@ describe 'Tests Github API library' do
     end
 
     it 'HAPPY: should identify members' do
-      members = @project.members
+      members = @project.contributors
       _(members.count).must_equal CORRECT['contributors'].count
 
       usernames = members.map(&:username)

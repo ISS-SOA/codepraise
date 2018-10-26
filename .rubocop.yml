@@ -12,6 +12,7 @@ Metrics/BlockLength:
   Enabled: true
   Exclude:
     - spec/**/*
+    - Rakefile
 
 # allow unsafe YAML loading in non-production code
 Security/YAMLLoad:

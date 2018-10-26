@@ -10,9 +10,10 @@ html
       crossorigin="anonymous"
     }
 
-    / Custom CSS
-    / link rel='stylesheet' href='/presentation/assets/css/style.css'
+    / Custom CSS and JS
     == assets(:css)
+    == assets(:js, defer: true)
+
   body
     / JQuery
     script{ 

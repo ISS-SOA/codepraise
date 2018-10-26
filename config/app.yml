@@ -1,0 +1,6 @@
+---
+development:
+  DB_FILENAME: app/infrastructure/database/local/dev.db
+
+test:
+  DB_FILENAME: app/infrastructure/database/local/test.db

@@ -4,6 +4,10 @@ h1 {
 
 .top-buffer { margin-top:20px; }
 
+.table-row {
+  cursor: pointer;
+}
+
 .posting.body {
   font-size: 1.2em;
 }

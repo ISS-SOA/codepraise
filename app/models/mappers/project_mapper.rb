@@ -36,9 +36,10 @@ module CodePraise
             origin_id: origin_id,
             name: name,
             size: size,
-            git_url: git_url,
+            ssh_url: ssh_url,
+            http_url: http_url,
             owner: owner,
-            members: members
+            contributors: contributors
           )
         end
 
@@ -58,15 +59,15 @@ module CodePraise
           MemberMapper.build_entity(@data['owner'])
         end
 
-        def url
+        def http_url
           @data['html_url']
         end
 
-        def git_url
+        def ssh_url
           @data['git_url']
         end
 
-        def members
+        def contributors
           @member_mapper.load_several(@data['contributors_url'])
         end
       end

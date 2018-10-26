@@ -2,21 +2,22 @@
   .row
     h2
       span.project.owner
-        = project.owner.username
+        = "#{project.owner.username}: "
       span.project.name style="padding-left:20px"
         = project.name
   .container
     .row
-      .col-lg-1.col-md-2.col-sm-2
+      .col-lg-2.col-md-2.col-sm-6
         span.project.attribute Repo:
-      .col-lg-11.col-md-10.col-sm-6
-        span.project.detail
-          = project.git_url
+      .col-lg-10.col-md-10.col-sm-6
+        span
+          a.project.detail href=project.http_url #{project.http_url}
     .row.top-buffer
-      .col-lg-1.col-md-2.col-sm-2
+      .col-lg-2.col-md-2.col-sm-6
         span.project.attribute Members:
-      .col-lg-11.col-md-10.col-sm-6
+      .col-lg-10.col-md-10.col-sm-6
         .row
-          - project.members.each do |member|
-            .col-sm-12
-              a.project.detail href="https://github.com/#{member.username}" #{member.username}
+          - project.contributors.each do |contributor|
+            span style="padding-left: 15px;"
+              a.project.detail href="https://github.com/#{contributor.username}"
+                = "#{contributor.username}"

@@ -10,6 +10,10 @@ module CodePraise
       attribute :origin_id, Strict::Integer
       attribute :username,  Strict::String
       attribute :email,     Strict::String.optional
+
+      def to_attr_hash
+        to_hash.reject { |key, _| [:id].include? key }
+      end
     end
   end
 end

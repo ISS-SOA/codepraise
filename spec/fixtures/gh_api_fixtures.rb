@@ -11,7 +11,7 @@ end
 
 def call_gh_url(config, url)
   HTTP.headers('Accept' => 'application/vnd.github.v3+json',
-               'Authorization' => "token #{config['GH_TOKEN']}").get(url)
+               'Authorization' => "token #{config['GITHUB_TOKEN']}").get(url)
 end
 
 gh_response = {}
