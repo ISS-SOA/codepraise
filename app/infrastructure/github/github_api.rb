@@ -1,4 +1,4 @@
-# frozen_string_literal: false
+# frozen_string_literal: true
 
 require 'http'
 
@@ -10,7 +10,7 @@ module CodePraise
         @gh_token = token
       end
 
-      def repo_data(username, project_name)
+      def git_repo_data(username, project_name)
         Request.new(@gh_token).repo(username, project_name).parse
       end
 

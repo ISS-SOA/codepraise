@@ -1,6 +1,8 @@
-# frozen_string_literal: false
+# frozen_string_literal: true
 
 require_relative 'member.rb'
+require 'dry-types'
+require 'dry-struct'
 
 module CodePraise
   module Entity

@@ -1,4 +1,7 @@
-# frozen_string_literal: false
+# frozen_string_literal: true
+
+require 'dry-types'
+require 'dry-struct'
 
 module CodePraise
   module Entity

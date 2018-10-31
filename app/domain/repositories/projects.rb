@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'members'
+
 module CodePraise
   module Repository
     # Repository for Project Entities

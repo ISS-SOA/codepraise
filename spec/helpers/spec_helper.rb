@@ -1,4 +1,4 @@
-# frozen_string_literal: false
+# frozen_string_literal: true
 
 ENV['RACK_ENV'] = 'test'
 
@@ -12,7 +12,7 @@ require 'minitest/rg'
 
 require 'pry' # for debugging
 
-require_relative '../init.rb'
+require_relative '../../init.rb'
 
 USERNAME = 'soumyaray'.freeze
 PROJECT_NAME = 'YPBT-app'.freeze

@@ -1,6 +1,6 @@
-# frozen_string_literal: false
+# frozen_string_literal: true
 
-require_relative 'spec_helper.rb'
+require_relative 'helpers/spec_helper.rb'
 require_relative 'helpers/vcr_helper.rb'
 require_relative 'helpers/database_helper.rb'
 

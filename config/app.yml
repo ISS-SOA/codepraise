@@ -1,6 +1,11 @@
 ---
 development:
-  DB_FILENAME: app/infrastructure/database/local/dev.db
+  DB_FILENAME:    app/infrastructure/database/local/dev.db
+  REPOSTORE_PATH: app/infrastructure/git/repostore
 
 test:
-  DB_FILENAME: app/infrastructure/database/local/test.db
+  DB_FILENAME:    app/infrastructure/database/local/test.db
+  REPOSTORE_PATH: app/infrastructure/git/repostore
+
+production:
+  REPOSTORE_PATH: app/infrastructure/git/repostore

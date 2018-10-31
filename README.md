@@ -13,7 +13,7 @@ We hope this tool will give instructors a fair sense of how well students have c
 ## Short-term usability goals
 
 - Pull data from Github API, clone repos
-- Analyze blame data to generate praise reports
+- Analyze blame data from git to generate team appraisal reports
 - Display folder level praise reports
 
 ## Long-term goals

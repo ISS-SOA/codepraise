@@ -1,4 +1,4 @@
-# frozen_string_literal: false
+# frozen_string_literal: true
 
 require_relative 'member_mapper.rb'
 
@@ -13,7 +13,7 @@ module CodePraise
       end
 
       def find(owner_name, project_name)
-        data = @gateway.repo_data(owner_name, project_name)
+        data = @gateway.git_repo_data(owner_name, project_name)
         build_entity(data)
       end
 

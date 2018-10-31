@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative 'members'
+require_relative 'projects'
+
 module CodePraise
   module Repository
     # Finds the right repository for an entity object or class

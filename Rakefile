@@ -27,14 +27,14 @@ namespace :db do
     require 'sequel'
     require_relative 'config/environment.rb' # load config info
     require_relative 'spec/helpers/database_helper.rb'
-    def app; CodePraise::App; end
+    @app = CodePraise::App
   end
 
   desc 'Run migrations'
   task :migrate => :config do
     Sequel.extension :migration
-    puts "Migrating #{app.environment} database to latest"
-    Sequel::Migrator.run(app.DB, 'app/infrastructure/database/migrations')
+    puts "Migrating #{@app.environment} database to latest"
+    Sequel::Migrator.run(@app.DB, 'app/infrastructure/database/migrations')
   end
 
   desc 'Wipe records from all tables'
@@ -45,13 +45,37 @@ namespace :db do
 
   desc 'Delete dev or test database file'
   task :drop => :config do
-    if app.environment == :production
+    if @app.environment == :production
       puts 'Cannot remove production database!'
       return
     end
 
-    FileUtils.rm(CodePraise::App.config.DB_FILENAME)
-    puts "Deleted #{CodePraise::App.config.DB_FILENAME}"
+    FileUtils.rm(@app.config.DB_FILENAME)
+    puts "Deleted #{@app.config.DB_FILENAME}"
+  end
+end
+
+namespace :gitrepo do
+  task :config do
+    require_relative 'config/environment.rb' # load config info
+    @app = CodePraise::App
+  end
+
+  desc 'Create director for repo store'
+  task :create => :config do
+    puts `mkdir #{@app.config.REPOSTORE_PATH}`
+  end
+
+  desc 'Delete cloned repos in repo store'
+  task :wipe => :config do
+    sh "rm -rf #{@app.config.REPOSTORE_PATH}/*" do |ok, _|
+      puts(ok ? 'Cloned repos deleted' : "Could not delete cloned repos")
+    end
+  end
+
+  desc 'List cloned repos in repo store'
+  task :list => :config do
+    puts `ls #{@app.config.REPOSTORE_PATH}`
   end
 end
 
