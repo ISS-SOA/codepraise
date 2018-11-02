@@ -14,7 +14,8 @@ module CodePraise
     class LocalGitRepo
       ONLY_FOLDERS = '**/'
       FILES_AND_FOLDERS = '**/*'
-      CODE_FILENAME_MATCH = /\.(rb|js|html|css|md)$/.freeze
+      TEXT_FILES = %w[rb py c js java css html slim md yml json txt].join('|')
+      CODE_FILENAME_MATCH = /\.(#{TEXT_FILES})$/.freeze
 
       attr_reader :git_repo_path
 
@@ -31,8 +32,8 @@ module CodePraise
       def folder_structure
         raise_unless_setup
         return @folder_structure if @folder_structure
-        @folder_structure = { '/' => [] }
 
+        @folder_structure = { '/' => [] }
         in_repo do
           all_folders = Dir.glob(ONLY_FOLDERS)
           all_folders.each do |full_path|

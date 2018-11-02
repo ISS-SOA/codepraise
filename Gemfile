@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.5.1'
+ruby '2.5.3'
 
 # Web application related
 gem 'econfig', '~> 2.1'

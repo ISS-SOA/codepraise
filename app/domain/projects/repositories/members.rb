@@ -12,16 +12,14 @@ module CodePraise
         rebuild_entity Database::MemberOrm.first(username: username)
       end
 
-      private
-
       def self.rebuild_entity(db_record)
         return nil unless db_record
 
         Entity::Member.new(
-          id:        db_record.id,
+          id: db_record.id,
           origin_id: db_record.origin_id,
-          username:  db_record.username,
-          email:     db_record.email
+          username: db_record.username,
+          email: db_record.email
         )
       end
 

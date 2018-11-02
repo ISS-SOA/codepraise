@@ -22,7 +22,7 @@ module CodePraise
 
       routing.on 'project' do
         routing.is do
-          # GET /project/
+          # POST /project/
           routing.post do
             gh_url = routing.params['github_url'].downcase
             routing.halt 400 unless (gh_url.include? 'github.com') &&
@@ -49,8 +49,16 @@ module CodePraise
             project = Repository::For.klass(Entity::Project)
               .find_full_name(owner_name, project_name)
 
+            gitrepo = GitRepo.new(project)
+
+            path = request.remaining_path
+            folder_name = path.empty? ? '' : path[1..-1]
+
+            folder = Mapper::Contributions
+              .new(gitrepo).for_folder(folder_name)
+
             # Show viewer the project
-            view 'project', locals: { project: project }
+            view 'project', locals: { project: project, folder: folder }
           end
         end
       end

@@ -1,21 +1,37 @@
 # frozen_string_literal: true
 
-require_relative 'file_summary'
+require_relative 'file_contributions_mapper'
 
 module CodePraise
-  module Entity
+  module Mapper
     # Summarizes contributions for an entire folder
     class FolderContributions
       attr_reader :folder_name
+      attr_reader :contributions_reports
 
       def initialize(folder_name, contributions_reports)
         @folder_name = folder_name
         @contributions_reports = contributions_reports
       end
 
+      def build_entity
+        Entity::FolderContributions.new(
+          path: @folder_name,
+          files: file_summaries
+        )
+      end
+
+      def file_summaries
+        @contributions_reports.map do |file_report|
+          Mapper::FileContributions.new(file_report).build_entity
+        end
+      end
+
+      # defunct below
+
       def subfolders
         structured = file_summaries.each_with_object({}) do |summary, folders|
-          (folders[rel_path(summary[0])] ||= []) << summary[1]
+          (folders[rel_path(summary.filename)] ||= []) << summary.contributions
         end
 
         structured.map do |folder, folder_summaries|
@@ -44,14 +60,6 @@ module CodePraise
             contributions[email][:count] += contribution[1][:count]
           end
         end
-      end
-
-      def file_summaries
-        @file_summaries ||=
-          @contributions_reports.map do |file_report|
-            summary = FileContributions.new(file_report)
-            [summary.filename, summary]
-          end.to_h
       end
 
       def folder_prefix_length

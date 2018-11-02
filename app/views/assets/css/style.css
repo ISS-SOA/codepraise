@@ -25,7 +25,17 @@ h1 {
 }
 
 .project.name {
-  
+  font-size: 1.5em;
+  vertical-align: middle;
+}
+
+span.percent {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+tr.contributions.table_header {
+  background-color: rgb(250, 250, 250)
 }
 
 .vcenter {

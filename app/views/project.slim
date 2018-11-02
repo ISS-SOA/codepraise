@@ -21,3 +21,46 @@
             span style="padding-left: 15px;"
               a.project.detail href="https://github.com/#{contributor.username}"
                 = "#{contributor.username}"
+  
+  / TODO: make contributions table 
+
+  table.table id="contribution_table"
+    thead
+      tr
+        th
+        - folder.contributors.each do |contributor|
+          th.contributors #{contributor.username}
+    tbody
+      / - binding.pry
+      - if folder.any_subfolders?
+        tr.contributions.table_header
+          td
+            span.contributions.table_header Folders
+          - (folder.contributors.count).times do
+            td
+        - folder.subfolders.each do |subfolder, index|
+          tr
+            td.project.name
+              a href=subfolder.path
+                span #{subfolder.path}/
+            - folder.contributors.each do |contributor|
+              td.contribution
+                span.percent #{subfolder.percent_credit_of(contributor)}%
+                br
+                span #{subfolder.lines_by(contributor).count}
+        tr
+          - (folder.contributors.count+1).times do
+            td
+      tr.contributions.table_header
+        td
+          span.contributions.table_header Files
+        - folder.contributors.each do |contributor|
+          td.contribution
+            span #{folder.lines_by(contributor).count}
+      - folder.base_files.each do |file, index|
+        tr
+          td.file_name
+            span #{file.file_path.filename}
+          - folder.contributors.each do |contributor|
+            td.contribution
+              span #{file.lines_by(contributor).count}

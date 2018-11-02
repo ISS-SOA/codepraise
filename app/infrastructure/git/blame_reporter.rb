@@ -3,9 +3,9 @@
 require 'concurrent'
 
 module CodePraise
-  module Praise
+  module Git
     # Git contributions report parsing and reporting services
-    class ContributionsReporter
+    class BlameReporter
       def initialize(gitrepo)
         @local = gitrepo.local
       end
@@ -15,9 +15,9 @@ module CodePraise
         files = @local.files.select { |file| file.start_with? folder_name }
         @local.in_repo do
           files.map do |filename|
-            Concurrent::Promise.execute { [filename, file_report(filename)] }
-          end.map(&:value)
-        end.to_h
+            [filename, file_report(filename)]
+          end
+        end
       end
 
       def files(folder_name)
@@ -33,8 +33,7 @@ module CodePraise
       end
 
       def file_report(filename)
-        contributions_output = Git::RepoFile.new(filename).blame
-        Porcelain.parse_file_blame(contributions_output)
+        Git::RepoFile.new(filename).blame
       end
     end
   end

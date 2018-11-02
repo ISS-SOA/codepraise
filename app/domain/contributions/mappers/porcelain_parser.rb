@@ -1,21 +1,22 @@
 # frozen_string_literal: true
 
 module CodePraise
-  module Praise
+  module Mapper
     # Parses git blame porcelain: https://git-scm.com/docs/git-blame/1.6.0
-    module Porcelain
+    module BlamePorcelain
       CODE_LINE_REGEX = /(\n\t[^\n]*\n)/
       NEWLINE = "\n"
 
       def self.parse_file_blame(output)
-        Porcelain.split_porcelain_by_line(output)
-                 .map { |line| Porcelain.parse_porcelain_line(line) }
+        BlamePorcelain.split_porcelain_by_line(output)
+          .map { |line| BlamePorcelain.parse_porcelain_line(line) }
       end
 
       def self.split_porcelain_by_line(output)
         header_code = output.split(CODE_LINE_REGEX)
         header_code.each_slice(2).map(&:join)
       rescue StandardError
+        puts "OUTPUT: #{output}"
         raise 'git blame line parsing failed'
       end
 
