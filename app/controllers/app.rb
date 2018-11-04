@@ -43,17 +43,20 @@ module CodePraise
         end
 
         routing.on String, String do |owner_name, project_name|
-          # GET /project/{owner_name}/{project_name}
+          # GET /project/{owner_name}/{project_name}[/folder_namepath/]
           routing.get do
+            path = request.remaining_path
+            folder_name = path.empty? ? '' : path[1..-1]
+
             # Get project from database instead of Github
             project = Repository::For.klass(Entity::Project)
               .find_full_name(owner_name, project_name)
 
+            # Clone remote repo from project information
             gitrepo = GitRepo.new(project)
+            gitrepo.clone! unless gitrepo.exists_locally?
 
-            path = request.remaining_path
-            folder_name = path.empty? ? '' : path[1..-1]
-
+            # Compile contributions for folder
             folder = Mapper::Contributions
               .new(gitrepo).for_folder(folder_name)
 

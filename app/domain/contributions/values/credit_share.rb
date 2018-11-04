@@ -2,18 +2,11 @@
 
 module CodePraise
   module Value
-    # Hash type that returns 0 when key not found
-    class HashedIntegers
-      def self.new
-        Hash.new { |hash, key| hash[key] = 0 }
-      end
-    end
-
     # Value of credits shared by contributors for file, files, or folder
     class CreditShare < SimpleDelegator
       # rubocop:disable Style/RedundantSelf
       def initialize
-        super(HashedIntegers.new)
+        super(Types::HashedIntegers.new)
       end
 
       def add_credit(line)

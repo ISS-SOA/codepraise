@@ -1,5 +1,5 @@
 config/secrets.yml
 coverage/
-.bundle/
 *.db
+.bundle/
 _snippets/

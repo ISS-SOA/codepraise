@@ -26,7 +26,6 @@ namespace :db do
   task :config do
     require 'sequel'
     require_relative 'config/environment.rb' # load config info
-    require_relative 'spec/helpers/database_helper.rb'
     @app = CodePraise::App
   end
 
@@ -39,6 +38,7 @@ namespace :db do
 
   desc 'Wipe records from all tables'
   task :wipe => :config do
+    require_relative 'spec/helpers/database_helper.rb'
     DatabaseHelper.setup_database_cleaner
     DatabaseHelper.wipe_database
   end

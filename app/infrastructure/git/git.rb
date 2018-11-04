@@ -13,9 +13,9 @@ module CodePraise
         @redirects = []
       end
 
-      def clone(ssh_url, path)
+      def clone(git_url, path)
         @command = 'clone'
-        @params = [ssh_url, path]
+        @params = [git_url, path]
         self
       end
 

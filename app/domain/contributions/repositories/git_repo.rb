@@ -13,7 +13,7 @@ module CodePraise
 
     def initialize(repo, config = CodePraise::App.config)
       @repo = repo
-      remote = Git::RemoteGitRepo.new(@repo.ssh_url)
+      remote = Git::RemoteGitRepo.new(@repo.http_url)
       @local = Git::LocalGitRepo.new(remote, config.REPOSTORE_PATH)
     end
 

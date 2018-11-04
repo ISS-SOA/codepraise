@@ -41,7 +41,7 @@
         - folder.subfolders.each do |subfolder, index|
           tr
             td.project.name
-              a href=subfolder.path
+              a href= "/project/#{project.owner.username}/#{project.name}/#{subfolder.path}"
                 span #{subfolder.path}/
             - folder.contributors.each do |contributor|
               td.contribution
