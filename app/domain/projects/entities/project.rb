@@ -19,6 +19,10 @@ module CodePraise
       attribute :owner,         Member
       attribute :contributors,  Strict::Array.of(Member)
 
+      def fullname
+        "#{owner.username}/#{name}"
+      end
+
       def to_attr_hash
         to_hash.reject { |key, _| [:id, :owner, :contributors].include? key }
       end

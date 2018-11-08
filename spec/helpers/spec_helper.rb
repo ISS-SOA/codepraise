@@ -14,7 +14,12 @@ require 'pry' # for debugging
 
 require_relative '../../init.rb'
 
-USERNAME = 'soumyaray'.freeze
-PROJECT_NAME = 'YPBT-app'.freeze
+USERNAME = 'soumyaray'
+PROJECT_NAME = 'YPBT-app'
 GITHUB_TOKEN = CodePraise::App.config.GITHUB_TOKEN
 CORRECT = YAML.safe_load(File.read('spec/fixtures/gh_results.yml'))
+
+# Helper methods
+def homepage
+  CodePraise::App.config.APP_HOST
+end

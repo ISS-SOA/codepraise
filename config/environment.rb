@@ -7,10 +7,14 @@ module CodePraise
   # Configuration for the App
   class App < Roda
     plugin :environments
+    plugin :flash
 
     extend Econfig::Shortcut
     Econfig.env = environment.to_s
     Econfig.root = '.'
+
+    use Rack::Session::Cookie, secret: config.SESSION_SECRET
+    use Rack::MethodOverride
 
     configure :development, :test do
       require 'pry'

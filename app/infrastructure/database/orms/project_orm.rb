@@ -15,6 +15,10 @@ module CodePraise
                    left_key: :project_id, right_key: :member_id
 
       plugin :timestamps, update_on_create: true
+
+      def fullname
+        "#{owner.username}/#{name}"
+      end
     end
   end
 end

@@ -6,32 +6,38 @@
       .col-md-8.col-sm-6
         input { 
           type='text' name='github_url'
-          id='github_url_input' class="form-control"
+          id='url_input' class="form-control"
           placeholder="e.g. https://www.github.com/soumyaray/YPBT-app"
         }
       .col-md-2.col-sm-3
         button { 
-          type='submit' id='project-form-submit' class='submit' 
+          type='submit' id='project_form_submit' class='submit' 
           value='submit' class="btn btn-success" 
         } Show Project
-    .row
-      .col-md-12.blank-row
-    - if projects.any?
-      table class="table table-hover" id="projects_table"
-        thead
-          tr
-            th Owner
-            th Github URL
-            th Contributors
-        tbody
-          - projects.each.with_index do |project, index|
-            tr class="table-row project_row" data-href="project/#{project.owner.username}/#{project.name}" id="project[#{index}].row"
-              td id='td_owner'
-                span class="project_table_owner" id="project[#{index}].owner"
-                  = project.owner.username
-              td id='td_project_name'
-                span class="project_name" id="project[#{index}].name"
-                  a href=project.http_url id="project[#{index}].link" #{project.name}
-              td id='td_members'
-                span class="project_table_member" id="project[#{index}].contributors"
-                  = project.contributors.map(&:username).join(', ')
+  .row
+    .col-md-12.blank-row
+  - if projects.any?
+    table class="table table-hover" id="projects_table"
+      thead
+        tr
+          th
+          th Owner
+          th Github URL
+          th Contributors
+      tbody
+        - projects.each.with_index do |project, index|
+          tr class="table-row project_row" data-href="project/#{project.owner.username}/#{project.name}" id="project[#{index}].row"
+            td id='delete_project'
+              form role='form' method='post' action="/project/#{project.fullname}"
+                input type='hidden' name='_method' value='delete'
+                button type="submit" id="project[#{index}].delete" class="btn btn-sm btn-link"
+                  i class="fas fa-trash-alt"
+            td id='td_owner'
+              span class="project_table_owner" id="project[#{index}].owner"
+                = project.owner.username
+            td id='td_project_name'
+              span class="project_name" id="project[#{index}].name"
+                a href=project.http_url id="project[#{index}].link" #{project.name}
+            td id='td_members'
+              span class="project_table_member" id="project[#{index}].contributors"
+                = project.contributors.map(&:username).join(', ')

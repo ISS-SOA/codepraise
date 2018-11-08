@@ -29,6 +29,12 @@ module CodePraise
         self
       end
 
+      def directory_exists?(dir_name)
+        in_repo do
+          Dir.exist? dir_name
+        end
+      end
+
       def folder_structure
         raise_unless_setup
         return @folder_structure if @folder_structure

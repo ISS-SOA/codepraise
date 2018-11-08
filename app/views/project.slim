@@ -29,9 +29,8 @@
       tr
         th
         - folder.contributors.each do |contributor|
-          th.contributors #{contributor.username}
+          th.contributor.username #{contributor.username}
     tbody
-      / - binding.pry
       - if folder.any_subfolders?
         tr.contributions.table_header
           td
@@ -40,11 +39,11 @@
             td
         - folder.subfolders.each do |subfolder, index|
           tr
-            td.project.name
+            td.folder.name
               a href= "/project/#{project.owner.username}/#{project.name}/#{subfolder.path}"
                 span #{subfolder.path}/
             - folder.contributors.each do |contributor|
-              td.contribution
+              td.folder.contribution
                 span.percent #{subfolder.percent_credit_of(contributor)}%
                 br
                 span #{subfolder.lines_by(contributor).count}
@@ -59,8 +58,8 @@
             span #{folder.lines_by(contributor).count}
       - folder.base_files.each do |file, index|
         tr
-          td.file_name
+          td.file.name
             span #{file.file_path.filename}
           - folder.contributors.each do |contributor|
-            td.contribution
+            td.file.contribution
               span #{file.lines_by(contributor).count}

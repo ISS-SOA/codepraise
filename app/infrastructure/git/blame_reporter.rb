@@ -12,6 +12,11 @@ module CodePraise
 
       def folder_report(folder_name)
         folder_name = '' if folder_name == '/'
+
+        unless folder_name == ''
+          raise "Folder not found (#{folder_name})" unless @local.in_repo { Dir.exist? folder_name }
+        end
+
         files = @local.files.select { |file| file.start_with? folder_name }
         @local.in_repo do
           files.map do |filename|

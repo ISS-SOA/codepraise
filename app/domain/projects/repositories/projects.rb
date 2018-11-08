@@ -21,6 +21,13 @@ module CodePraise
         rebuild_entity(db_project)
       end
 
+      def self.find_full_names(full_names)
+        full_names.map do |fullname|
+          owner_name, project_name = fullname.split('/')
+          find_full_name(owner_name, project_name)
+        end
+      end
+
       def self.find(entity)
         find_origin_id(entity.origin_id)
       end
@@ -33,6 +40,10 @@ module CodePraise
       def self.find_origin_id(origin_id)
         db_record = Database::ProjectOrm.first(origin_id: origin_id)
         rebuild_entity(db_record)
+      end
+
+      def self.find_or_create(entity)
+        find(entity) || create(entity)
       end
 
       def self.create(entity)
@@ -66,13 +77,13 @@ module CodePraise
         end
 
         def call
-          owner = Members.db_find_or_create(@entity.owner)
+          owner = Members.find_or_create(@entity.owner)
 
           create_project.tap do |db_project|
             db_project.update(owner: owner)
 
             @entity.contributors.each do |contributor|
-              db_project.add_contributor(Members.db_find_or_create(contributor))
+              db_project.add_contributor(Members.find_or_create(contributor))
             end
           end
         end
