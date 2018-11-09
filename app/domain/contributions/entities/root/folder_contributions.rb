@@ -45,10 +45,6 @@ module CodePraise
         end
       end
 
-      def link
-
-      end
-
       def any_subfolders?
         subfolders.count.positive?
       end

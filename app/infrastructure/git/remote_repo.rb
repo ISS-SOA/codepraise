@@ -5,9 +5,9 @@ require 'base64'
 module CodePraise
   module Git
     # USAGE:
-    #   load 'infrastructure/gitrepo/gitrepo.rb'
-    #   origin = Git::RemoteGitRepo.new('git@github.com:soumyaray/YPBT-app.git')
-    #   local = Git::LocalGitRepo.new(origin, 'infrastructure/gitrepo/repostore')
+    #  load 'infrastructure/gitrepo/gitrepo.rb'
+    #  origin = Git::RemoteGitRepo.new('git@github.com:soumyaray/YPBT-app.git')
+    #  local = Git::LocalGitRepo.new(origin, 'infrastructure/gitrepo/repostore')
 
     # Manage remote Git repository for cloning
     class RemoteGitRepo

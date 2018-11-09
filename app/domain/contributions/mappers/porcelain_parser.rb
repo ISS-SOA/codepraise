@@ -4,7 +4,7 @@ module CodePraise
   module Mapper
     # Parses git blame porcelain: https://git-scm.com/docs/git-blame/1.6.0
     module BlamePorcelain
-      CODE_LINE_REGEX = /(\n\t[^\n]*\n)/
+      CODE_LINE_REGEX = /(\n\t[^\n]*\n)/.freeze
       NEWLINE = "\n"
 
       def self.parse_file_blame(output)

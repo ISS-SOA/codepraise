@@ -71,7 +71,7 @@ namespace :db do
   end
 end
 
-namespace :gitrepo do
+namespace :repostore do
   task :config do
     require_relative 'config/environment.rb' # load config info
     @app = CodePraise::App
@@ -85,7 +85,7 @@ namespace :gitrepo do
   desc 'Delete cloned repos in repo store'
   task :wipe => :config do
     sh "rm -rf #{@app.config.REPOSTORE_PATH}/*" do |ok, _|
-      puts(ok ? 'Cloned repos deleted' : "Could not delete cloned repos")
+      puts(ok ? 'Cloned repos deleted' : 'Could not delete cloned repos')
     end
   end
 

@@ -20,7 +20,7 @@ module CodePraise
 
       # Sends out HTTP requests to Github
       class Request
-        REPOS_PATH = 'https://api.github.com/repos/'.freeze
+        REPOS_PATH = 'https://api.github.com/repos/'
 
         def initialize(token)
           @token = token
@@ -53,7 +53,7 @@ module CodePraise
         }.freeze
 
         def successful?
-          HTTP_ERROR.keys.include?(code) ? false : true
+          HTTP_ERROR.key?(code) ? false : true
         end
 
         def error

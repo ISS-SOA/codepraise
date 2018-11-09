@@ -24,7 +24,7 @@ module CodePraise
       end
 
       def to_attr_hash
-        to_hash.reject { |key, _| [:id, :owner, :contributors].include? key }
+        to_hash.reject { |key, _| %i[id owner contributors].include? key }
       end
     end
   end

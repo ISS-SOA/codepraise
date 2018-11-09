@@ -9,11 +9,11 @@ module CodePraise
       end
 
       def for_folder(folder_name)
-        blame_output = Git::BlameReporter.new(@gitrepo).folder_report(folder_name)
+        blame = Git::BlameReporter.new(@gitrepo).folder_report(folder_name)
 
         Mapper::FolderContributions.new(
           folder_name,
-          parse_file_reports(blame_output)
+          parse_file_reports(blame)
         ).build_entity
       end
 

@@ -4,8 +4,11 @@ AllCops:
   Include:
     - 'Gemfile'
     - 'Rakefile'
+    - 'app/**/*.rb'
   Exclude:
-    - '_snippets/**/*.rb'
+    - '_*/**/*'
+    # - '_snippets/**/*'
+    - 'app/infrastructure/git/repostore/**/*'
 
 # ignore block length in non-production code
 Metrics/BlockLength:
@@ -13,6 +16,7 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*
     - Rakefile
+    - app/controllers/**/*.rb
 
 # allow unsafe YAML loading in non-production code
 Security/YAMLLoad:
@@ -29,6 +33,7 @@ Style/SymbolArray:
   Enabled: true
   Exclude:
     - Rakefile
+    - app/infrastructure/database/migrations/*.rb
 
 Layout/MultilineMethodCallIndentation:
   Enabled: true

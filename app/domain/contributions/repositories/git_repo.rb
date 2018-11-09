@@ -18,8 +18,7 @@ module CodePraise
     end
 
     def local
-      raise Errors::NoGitRepoFound unless exists_locally?
-      @local
+      exists_locally? ? @local : raise(Errors::NoGitRepoFound)
     end
 
     def delete!
@@ -37,6 +36,7 @@ module CodePraise
     def clone!
       raise Errors::TooLargeToClone if too_large?
       raise Errors::CannotOverwriteLocalGitRepo if exists_locally?
+
       @local.clone_remote { |line| yield line if block_given? }
     end
   end

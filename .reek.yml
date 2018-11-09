@@ -4,3 +4,4 @@ detectors:
     enabled: false
 exclude_paths:
   - lib/_snippets
+  - app/infrastructure/git/repostore

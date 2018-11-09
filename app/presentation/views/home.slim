@@ -25,19 +25,19 @@
           th Github URL
           th Contributors
       tbody
-        - projects.each.with_index do |project, index|
-          tr class="table-row project_row" data-href="project/#{project.owner.username}/#{project.name}" id="project[#{index}].row"
+        - projects.each do |project|
+          tr class="table-row project_row" data-href=project.praise_link id="#{project.index_str}.row"
             td id='delete_project'
-              form role='form' method='post' action="/project/#{project.fullname}"
+              form role='form' method='post' action=project.praise_link
                 input type='hidden' name='_method' value='delete'
-                button type="submit" id="project[#{index}].delete" class="btn btn-sm btn-link"
+                button type="submit" class="btn btn-sm btn-link" id="#{project.index_str}.delete"
                   i class="fas fa-trash-alt"
             td id='td_owner'
-              span class="project_table_owner" id="project[#{index}].owner"
-                = project.owner.username
+              span class="project_table_owner" id="#{project.index_str}.owner"
+                = project.owner_name
             td id='td_project_name'
-              span class="project_name" id="project[#{index}].name"
-                a href=project.http_url id="project[#{index}].link" #{project.name}
+              span class="project_name" id="#{project.index_str}.name"
+                a href=project.http_url id="#{project.index_str}.link" #{project.name}
             td id='td_members'
-              span class="project_table_member" id="project[#{index}].contributors"
-                = project.contributors.map(&:username).join(', ')
+              span class="project_table_member" id="#{project.index_str}.contributors"
+                = project.contributor_names

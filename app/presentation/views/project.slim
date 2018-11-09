@@ -2,64 +2,62 @@
   .row
     h2
       span.project.owner
-        = "#{project.owner.username}: "
+        = "#{proj_folder.owner_name}: "
       span.project.name style="padding-left:20px"
-        = project.name
+        = proj_folder.project_name
   .container
     .row
       .col-lg-2.col-md-2.col-sm-6
         span.project.attribute Repo:
       .col-lg-10.col-md-10.col-sm-6
         span
-          a.project.detail href=project.http_url #{project.http_url}
+          a.project.detail href=proj_folder.http_url #{proj_folder.http_url}
     .row.top-buffer
       .col-lg-2.col-md-2.col-sm-6
         span.project.attribute Members:
       .col-lg-10.col-md-10.col-sm-6
         .row
-          - project.contributors.each do |contributor|
+          - proj_folder.contributors.each do |contributor|
             span style="padding-left: 15px;"
-              a.project.detail href="https://github.com/#{contributor.username}"
+              a.project.detail href="#{contributor.github_profile_url}"
                 = "#{contributor.username}"
   
-  / TODO: make contributions table 
-
   table.table id="contribution_table"
     thead
       tr
         th
-        - folder.contributors.each do |contributor|
+        - proj_folder.contributors.each do |contributor|
           th.contributor.username #{contributor.username}
     tbody
-      - if folder.any_subfolders?
+      - if proj_folder.any_subfolders?
         tr.contributions.table_header
           td
             span.contributions.table_header Folders
-          - (folder.contributors.count).times do
+          - (proj_folder.contributors.count).times do
             td
-        - folder.subfolders.each do |subfolder, index|
+        - proj_folder.subfolders.each do |subfolder|
           tr
             td.folder.name
-              a href= "/project/#{project.owner.username}/#{project.name}/#{subfolder.path}"
-                span #{subfolder.path}/
-            - folder.contributors.each do |contributor|
+              a href="#{subfolder.full_path}"
+                span #{subfolder.rel_path}/
+            - proj_folder.contributors.each do |contributor|
               td.folder.contribution
                 span.percent #{subfolder.percent_credit_of(contributor)}%
                 br
-                span #{subfolder.lines_by(contributor).count}
+                span #{subfolder.num_lines_by(contributor)}
         tr
-          - (folder.contributors.count+1).times do
+          - (proj_folder.num_contributors + 1).times do
             td
       tr.contributions.table_header
         td
           span.contributions.table_header Files
-        - folder.contributors.each do |contributor|
+        - proj_folder.contributors.each do |contributor|
           td.contribution
-            span #{folder.lines_by(contributor).count}
-      - folder.base_files.each do |file, index|
+            span #{proj_folder.num_lines_by(contributor)}
+      - proj_folder.files.each do |file|
         tr
           td.file.name
-            span #{file.file_path.filename}
-          - folder.contributors.each do |contributor|
+            span #{file.filename}
+          - proj_folder.contributors.each do |contributor|
             td.file.contribution
-              span #{file.lines_by(contributor).count}
+              span #{file.num_lines_by(contributor)}

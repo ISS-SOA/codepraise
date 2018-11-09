@@ -8,11 +8,9 @@ require 'watir'
 
 describe 'Acceptance Tests' do
   DatabaseHelper.setup_database_cleaner
-  VcrHelper.setup_vcr
 
   before do
     DatabaseHelper.wipe_database
-    VcrHelper.configure_vcr_for_github
     @headless = Headless.new
     @browser = Watir::Browser.new
   end
@@ -20,7 +18,6 @@ describe 'Acceptance Tests' do
   after do
     @browser.close
     @headless.destroy
-    VcrHelper.eject_vcr
   end
 
   describe 'Homepage' do

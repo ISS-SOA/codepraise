@@ -2,4 +2,3 @@ trap "kill 0" EXIT
 
 RACK_ENV=test rackup -p 9000 &
 rake spec_accept
-
