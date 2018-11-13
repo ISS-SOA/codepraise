@@ -15,7 +15,7 @@ end
 desc 'Run acceptance tests'
 task :spec_accept do
   puts 'NOTE: run `rake run:test` in another process'
-  sh 'ruby spec/acceptance_spec_.rb'
+  sh 'RACK_ENV=app_test ruby spec/acceptance_spec_.rb'
 end
 
 desc 'Keep rerunning unit/integration tests upon changes'

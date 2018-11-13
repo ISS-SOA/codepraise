@@ -98,6 +98,13 @@ module CodePraise
           routing.get do
             path = request.remaining_path
             folder_name = path.empty? ? '' : path[1..-1]
+            fullname = [owner_name, project_name].join('/')
+
+            session[:watching] ||= []
+            unless session[:watching].include? fullname
+              flash[:error] = 'Please request this project first'
+              routing.redirect '/'
+            end
 
             # Get project from database instead of Github
             begin

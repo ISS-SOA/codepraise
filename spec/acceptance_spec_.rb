@@ -2,7 +2,6 @@
 
 require_relative 'helpers/spec_helper.rb'
 require_relative 'helpers/database_helper.rb'
-require_relative 'helpers/vcr_helper.rb'
 require 'headless'
 require 'watir'
 
@@ -66,6 +65,48 @@ describe 'Acceptance Tests' do
         @browser.url.include? PROJECT_NAME
       end
 
+      it '(HAPPY) should be able to see requested projects listed' do
+        # GIVEN: user is on the home page without any projects
+        @browser.goto homepage
+
+        # WHEN: they add a project URL and submit
+        good_url = "https://github.com/#{USERNAME}/#{PROJECT_NAME}"
+        @browser.text_field(id: 'url_input').set(good_url)
+        @browser.button(id: 'project_form_submit').click
+        # and then return to the home page
+        @browser.goto homepage
+
+        # THEN: they should see their project's details listed
+        table = @browser.table(id: 'projects_table')
+        project_rows = table.trs(class: 'project_row')
+        new_row = project_rows.first
+
+        _(table.exists?).must_equal true
+        _(project_rows.count).must_equal 1
+        _(new_row.text).must_include USERNAME
+        _(new_row.text).must_include PROJECT_NAME
+      end
+
+      it '(HAPPY) should see project highlighted when they hover over it' do
+        # GIVEN: user is on homepage with requests project
+        @browser.goto homepage
+        good_url = "https://github.com/#{USERNAME}/#{PROJECT_NAME}"
+        @browser.text_field(id: 'url_input').set(good_url)
+        @browser.button(id: 'project_form_submit').click
+        @browser.goto homepage
+
+        # WHEN: they hover over their new project
+        table = @browser.table(id: 'projects_table')
+        project_rows = table.trs(class: 'project_row')
+        new_row = project_rows.first
+        old_highlight = new_row.style('background-color')
+        new_row.hover
+
+        # THEN: the new project should get highlighted
+        new_highlight = new_row.style('background-color')
+        _(old_highlight).wont_equal new_highlight
+      end
+
       it '(BAD) should not be able to add an invalid project URL' do
         # GIVEN: user is on the home page without any projects
         @browser.goto homepage
@@ -97,7 +138,7 @@ describe 'Acceptance Tests' do
 
     describe 'Delete Project' do
       it '(HAPPY) should be able to delete a requested project' do
-        # GIVEN: user has requested and created a single project
+        # GIVEN: user has requested and created a project
         @browser.goto homepage
         good_url = "https://github.com/#{USERNAME}/#{PROJECT_NAME}"
         @browser.text_field(id: 'url_input').set(good_url)
@@ -115,12 +156,11 @@ describe 'Acceptance Tests' do
 
   describe 'Project Page' do
     it '(HAPPY) should see project content if project exists' do
-      # GIVEN: a project exists
-      project = CodePraise::Github::ProjectMapper
-        .new(GITHUB_TOKEN)
-        .find(USERNAME, PROJECT_NAME)
-
-      CodePraise::Repository::For.entity(project).create(project)
+      # GIVEN: user has requested and created a project
+      @browser.goto homepage
+      good_url = "https://github.com/#{USERNAME}/#{PROJECT_NAME}"
+      @browser.text_field(id: 'url_input').set(good_url)
+      @browser.button(id: 'project_form_submit').click
 
       # WHEN: user goes directly to the project page
       @browser.goto "http://localhost:9000/project/#{USERNAME}/#{PROJECT_NAME}"
@@ -134,37 +174,34 @@ describe 'Acceptance Tests' do
       end
 
       _(contributor_columns.count).must_equal 3
-
       _(contributor_columns.map(&:text).sort)
         .must_equal ['SOA-KunLin', 'Yuan Yu', 'luyimin']
-
 
       folder_rows = @browser.table(id: 'contribution_table').trs.select do |row|
         row.td(class: %w[folder name]).present?
       end
-
       _(folder_rows.count).must_equal 10
 
       file_rows = @browser.table(id: 'contribution_table').trs.select do |row|
         row.td(class: %w[file name]).present?
       end
-
       _(file_rows.count).must_equal 2
     end
 
     it '(HAPPY) should be able to traverse to subfolders' do
-      project = CodePraise::Github::ProjectMapper
-        .new(GITHUB_TOKEN)
-        .find(USERNAME, PROJECT_NAME)
+      # GIVEN: user has created a project
+      @browser.goto homepage
+      good_url = "https://github.com/#{USERNAME}/#{PROJECT_NAME}"
+      @browser.text_field(id: 'url_input').set(good_url)
+      @browser.button(id: 'project_form_submit').click
 
-      CodePraise::Repository::For.entity(project).create(project)
-
+      # WHEN: they go to the project's page
       @browser.goto "http://localhost:9000/project/#{USERNAME}/#{PROJECT_NAME}"
 
+      # THEN: they should see the project and contribution details
       folder_rows = @browser.table(id: 'contribution_table').trs.select do |row|
         row.td(class: %w[folder name]).present?
       end
-
 
       views_folder = folder_rows.first.tds.find do |column|
         column.link.href.include? 'views_objects'
@@ -188,12 +225,11 @@ describe 'Acceptance Tests' do
     end
 
     it '(BAD) should report error if subfolder does not exist' do
-      # GIVEN a project that exists
-      project = CodePraise::Github::ProjectMapper
-        .new(GITHUB_TOKEN)
-        .find(USERNAME, PROJECT_NAME)
-
-      CodePraise::Repository::For.entity(project).create(project)
+      # GIVEN: user has created a project
+      @browser.goto homepage
+      good_url = "https://github.com/#{USERNAME}/#{PROJECT_NAME}"
+      @browser.text_field(id: 'url_input').set(good_url)
+      @browser.button(id: 'project_form_submit').click
 
       # WHEN user goes to a non-existent folder of the project
       @browser.goto "http://localhost:9000/project/#{USERNAME}/#{PROJECT_NAME}/bad_folder"
@@ -201,6 +237,24 @@ describe 'Acceptance Tests' do
       # THEN: user should see a warning message
       _(@browser.div(id: 'flash_bar_danger').present?).must_equal true
       _(@browser.div(id: 'flash_bar_danger').text.downcase).must_include 'could not find'
+    end
+
+    it '(HAPPY) should report an error if project not requested' do
+      # GIVEN: user has not requested a project yet, even though it exists
+      project = CodePraise::Github::ProjectMapper
+        .new(GITHUB_TOKEN)
+        .find(USERNAME, PROJECT_NAME)
+      CodePraise::Repository::For.entity(project).create(project)
+
+      # WHEN: they go directly to the project's page
+      @browser.goto "http://localhost:9000/project/#{USERNAME}/#{PROJECT_NAME}"
+
+      # THEN: they should should find themselves back on the homepage
+      _(@browser.url).must_equal(homepage + '/')
+
+      # with a warning message
+      _(@browser.div(id: 'flash_bar_danger').present?).must_equal true
+      _(@browser.div(id: 'flash_bar_danger').text.downcase).must_include 'please request'
     end
   end
 end

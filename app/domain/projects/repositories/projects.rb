@@ -12,7 +12,10 @@ module CodePraise
 
       def self.find_full_name(owner_name, project_name)
         # TODO: ensure tests cover this method
-        # TODO: document SQL for this query
+        # "SELECT <all elements of projects and members>
+        #  FROM `projects` LEFT OUTER JOIN `members`
+        #    ON (`members`.`id` = `projects`.`owner_id`)
+        #  WHERE ((`username` = <owner_name>) AND (`name` = <YPBT-app>))"
         db_project = Database::ProjectOrm
           .graph(:members, id: :owner_id)
           .where(username: owner_name, name: project_name)
