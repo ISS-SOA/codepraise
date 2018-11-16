@@ -16,7 +16,6 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*
     - Rakefile
-    - app/controllers/**/*.rb
 
 # allow unsafe YAML loading in non-production code
 Security/YAMLLoad:

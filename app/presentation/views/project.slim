@@ -1,9 +1,9 @@
 .container
   .row
-    h2
-      span.project.owner
+    h2 id='project_fullname'
+      span.project.owner id='project.owner'
         = "#{proj_folder.owner_name}: "
-      span.project.name style="padding-left:20px"
+      span.project.name style="padding-left:20px" id='project.name'
         = proj_folder.project_name
   .container
     .row
@@ -27,7 +27,9 @@
       tr
         th
         - proj_folder.contributors.each do |contributor|
-          th.contributor.username #{contributor.username}
+          th.contributor.username
+            span id='contributor.username'
+              = "#{contributor.username}"
     tbody
       - if proj_folder.any_subfolders?
         tr.contributions.table_header
@@ -36,8 +38,8 @@
           - (proj_folder.contributors.count).times do
             td
         - proj_folder.subfolders.each do |subfolder|
-          tr
-            td.folder.name
+          tr id='folder_row'
+            td.folder.name id='folder.name'
               a href="#{subfolder.full_path}"
                 span #{subfolder.rel_path}/
             - proj_folder.contributors.each do |contributor|
@@ -55,7 +57,7 @@
           td.contribution
             span #{proj_folder.num_lines_by(contributor)}
       - proj_folder.files.each do |file|
-        tr
+        tr id='file_row'
           td.file.name
             span #{file.filename}
           - proj_folder.contributors.each do |contributor|

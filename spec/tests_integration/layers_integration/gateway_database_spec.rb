@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'helpers/spec_helper.rb'
-require_relative 'helpers/vcr_helper.rb'
-require_relative 'helpers/database_helper.rb'
+require_relative '../../helpers/spec_helper.rb'
+require_relative '../../helpers/vcr_helper.rb'
+require_relative '../../helpers/database_helper.rb'
 
 describe 'Integration Tests of Github API and Database' do
   VcrHelper.setup_vcr

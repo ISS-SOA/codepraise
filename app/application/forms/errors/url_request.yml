@@ -1,0 +1,3 @@
+en:
+  errors:
+    remote_url: 'Invalid address for a Github project'

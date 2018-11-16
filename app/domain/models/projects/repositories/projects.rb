@@ -28,7 +28,7 @@ module CodePraise
         full_names.map do |fullname|
           owner_name, project_name = fullname.split('/')
           find_full_name(owner_name, project_name)
-        end
+        end.compact
       end
 
       def self.find(entity)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'helpers/spec_helper.rb'
-require_relative 'helpers/vcr_helper.rb'
+require_relative '../../helpers/spec_helper.rb'
+require_relative '../../helpers/vcr_helper.rb'
 
 describe 'Tests Github API library' do
   VcrHelper.setup_vcr

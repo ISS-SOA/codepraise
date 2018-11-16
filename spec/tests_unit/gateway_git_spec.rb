@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'helpers/spec_helper.rb'
+require_relative '../helpers/spec_helper.rb'
 
 describe 'Unit test of git command gateway' do
   CLONE_COMMAND = 'git clone --progress ssh://__.git ./test 2>&1'
