@@ -9,9 +9,8 @@ module CodePraise
       include Dry::Transaction
 
       step :validate_project
-      step :retrieve_remote_project
-      step :clone_remote
-      step :appraise_contributions
+      step :retrieve_folder_appraisal
+      step :reify_appraisal
 
       private
 
@@ -23,33 +22,21 @@ module CodePraise
         end
       end
 
-      def retrieve_remote_project(input)
-        input[:project] = Repository::For.klass(Entity::Project).find_full_name(
-          input[:requested].owner_name, input[:requested].project_name
-        )
+      def retrieve_folder_appraisal(input)
+        result = Gateway::Api.new(CodePraise::App.config)
+          .appraise(input[:requested])
 
-        input[:project] ? Success(input) : Failure('Project not found')
+        result.success? ? Success(result.payload) : Failure(result.message)
       rescue StandardError
-        Failure('Having trouble accessing the database')
+        Failure('Cannot appraise projects right now; please try again later')
       end
 
-      def clone_remote(input)
-        gitrepo = GitRepo.new(input[:project])
-        gitrepo.clone! unless gitrepo.exists_locally?
-
-        Success(input.merge(gitrepo: gitrepo))
+      def reify_appraisal(folder_appraisal_json)
+        Representer::ProjectFolderContributions.new(OpenStruct.new)
+          .from_json(folder_appraisal_json)
+          .yield_self { |folder_appraisal| Success(folder_appraisal) }
       rescue StandardError
-        puts error.backtrace.join("\n")
-        Failure('Could not clone this project')
-      end
-
-      def appraise_contributions(input)
-        input[:folder] = Mapper::Contributions
-          .new(input[:gitrepo]).for_folder(input[:requested].folder_name)
-
-        Success(input)
-      rescue StandardError
-        Failure('Could not find that folder')
+        Failure('Error in our appraisal report -- please try again')
       end
     end
   end

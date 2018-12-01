@@ -1,5 +1,0 @@
-# This file puts the repostore folder into git version control:
-# https://steindom.com/articles/add-empty-directory-git-repository
-
-*
-!.gitignore

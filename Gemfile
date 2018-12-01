@@ -17,31 +17,18 @@ gem 'dry-monads'
 gem 'dry-transaction'
 gem 'dry-validation'
 
-# DOMAIN LAYER
-gem 'dry-struct', '~> 0.5'
-gem 'dry-types', '~> 0.5'
+# Representers
+gem 'multi_json'
+gem 'roar'
 
 # INFRASTRUCTURE LAYER
 # Networking
 gem 'http', '~> 3.0'
 
-# Database
-gem 'hirb', '~> 0.7'
-gem 'sequel', '~> 5.13'
-
-group :development, :test do
-  gem 'database_cleaner'
-  gem 'sqlite3'
-end
-
-group :production do
-  gem 'pg', '~> 0.18'
-end
-
 # DEBUGGING
-group :development do
-  gem 'debase'
-  gem 'ruby-debug-ide'
+group :development, :test do
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
 end
 
 # TESTING

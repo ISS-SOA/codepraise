@@ -31,12 +31,12 @@ module CodePraise
 
         if result.failure?
           flash[:error] = result.failure
-          view 'home', locals: { projects: [] }
-        end
-
-        projects = result.value!
-        if projects.none?
-          flash.now[:notice] = 'Add a Github project to get started'
+          projects = []
+        else
+          projects = result.value!.projects
+          if projects.none?
+            flash.now[:notice] = 'Add a Github project to get started'
+          end
         end
 
         session[:watching] = projects.map(&:fullname)
@@ -60,7 +60,8 @@ module CodePraise
             project = project_made.value!
             session[:watching].insert(0, project.fullname).uniq!
             flash[:notice] = 'Project added to your list'
-            routing.redirect "project/#{project.owner.username}/#{project.name}"
+            # routing.redirect "project/#{project.owner.username}/#{project.name}"
+            routing.redirect '/'
           end
         end
 
