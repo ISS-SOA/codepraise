@@ -13,6 +13,7 @@ module CodePraise
     plugin :halt
     plugin :flash
     plugin :all_verbs
+    plugin :caching
     plugin :render, engine: 'slim', views: 'app/presentation/views'
     plugin :assets, path: 'app/presentation/assets',
                     css: 'style.css', js: 'table_row.js'
@@ -98,6 +99,7 @@ module CodePraise
             )
 
             # Show viewer the project
+            response.expires 60, public: true
             view 'project', locals: { proj_folder: proj_folder }
           end
         end
