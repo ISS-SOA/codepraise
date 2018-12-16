@@ -23,18 +23,22 @@ module CodePraise
       end
 
       def retrieve_folder_appraisal(input)
-        result = Gateway::Api.new(CodePraise::App.config)
+        input[:response] = Gateway::Api.new(CodePraise::App.config)
           .appraise(input[:requested])
 
-        result.success? ? Success(result.payload) : Failure(result.message)
+        input[:response].success? ? Success(input) : Failure(response.message)
       rescue StandardError
         Failure('Cannot appraise projects right now; please try again later')
       end
 
-      def reify_appraisal(folder_appraisal_json)
-        Representer::ProjectFolderContributions.new(OpenStruct.new)
-          .from_json(folder_appraisal_json)
-          .yield_self { |folder_appraisal| Success(folder_appraisal) }
+      def reify_appraisal(input)
+        unless input[:response].processing?
+          Representer::ProjectFolderContributions.new(OpenStruct.new)
+            .from_json(input[:response].payload)
+            .yield_self { |report| input[:appraised] = report }
+        end
+
+        Success(input)
       rescue StandardError
         Failure('Error in our appraisal report -- please try again')
       end

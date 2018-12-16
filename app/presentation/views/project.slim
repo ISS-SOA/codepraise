@@ -1,65 +1,102 @@
 .container
-  .row
-    h2 id='project_fullname'
-      span.project.owner id='project.owner'
-        = "#{proj_folder.owner_name}: "
-      span.project.name style="padding-left:20px" id='project.name'
-        = proj_folder.project_name
-  .container
+  - if processing.in_progress?
+    .progress
+    .progress-bar.bg-success.progress-bar-striped.active[
+      role="progressbar" aria-valuenow="10" aria-valuemin="0"
+      aria-valuemax="100" style="width:0%"]
+    script src = "#{processing.ws_javascript}"
+    javascript:
+      var channel = "#{processing.ws_channel_id}";
+      var client = new Faye.Client("#{processing.ws_route}");
+      var bar = document.getElementsByClassName("progress-bar")[0];
+      var reg = /\:(\d+)%/
+      client.subscribe('/' + channel, function(message) {
+        // Collect progressbar element and percentage
+        var progress = bar.getAttribute("style")
+        var currentProgress = reg.exec(progress)[1]
+        
+        if (isNaN(message)) {
+          bar.setAttribute("style", "width:100%")
+          bar.setAttribute("class", "progress-bar bg-danger progress-bar-striped")
+          bar.innerHTML = message
+        } else {
+          if (parseInt(message) > parseInt(currentProgress)) {
+            // Set the progress bar and percentage
+            bar.setAttribute("aria-valuenow", message)
+            bar.setAttribute("style", "width:"+message+"%")
+            bar.innerHTML = message+"%"
+
+            // Reoad page at 100%
+            if (message == "100") {
+              setTimeout(function () {
+                window.location = window.location.href
+              }, 1000);
+            }
+          }
+        }
+      });
+  -  else
     .row
-      .col-lg-2.col-md-2.col-sm-6
-        span.project.attribute Repo:
-      .col-lg-10.col-md-10.col-sm-6
-        span
-          a.project.detail href=proj_folder.http_url #{proj_folder.http_url}
-    .row.top-buffer
-      .col-lg-2.col-md-2.col-sm-6
-        span.project.attribute Members:
-      .col-lg-10.col-md-10.col-sm-6
-        .row
+      h2 id='project_fullname'
+        span.project.owner id='project.owner'
+          = "#{proj_folder.owner_name}: "
+        span.project.name style="padding-left:20px" id='project.name'
+          = proj_folder.project_name
+    .container
+      .row
+        .col-lg-2.col-md-2.col-sm-6
+          span.project.attribute Repo:
+        .col-lg-10.col-md-10.col-sm-6
+          span
+            a.project.detail href=proj_folder.http_url #{proj_folder.http_url}
+      .row.top-buffer
+        .col-lg-2.col-md-2.col-sm-6
+          span.project.attribute Members:
+        .col-lg-10.col-md-10.col-sm-6
+          .row
+            - proj_folder.contributors.each do |contributor|
+              span style="padding-left: 15px;"
+                a.project.detail href="#{contributor.github_profile_url}"
+                  = "#{contributor.username}"
+    
+    table.table id="contribution_table"
+      thead
+        tr
+          th
           - proj_folder.contributors.each do |contributor|
-            span style="padding-left: 15px;"
-              a.project.detail href="#{contributor.github_profile_url}"
+            th.contributor.username
+              span id='contributor.username'
                 = "#{contributor.username}"
-  
-  table.table id="contribution_table"
-    thead
-      tr
-        th
-        - proj_folder.contributors.each do |contributor|
-          th.contributor.username
-            span id='contributor.username'
-              = "#{contributor.username}"
-    tbody
-      - if proj_folder.any_subfolders?
+      tbody
+        - if proj_folder.any_subfolders?
+          tr.contributions.table_header
+            td
+              span.contributions.table_header Folders
+            - (proj_folder.contributors.count).times do
+              td
+          - proj_folder.subfolders.each do |subfolder|
+            tr id='folder_row'
+              td.folder.name id='folder.name'
+                a href="#{subfolder.full_path}"
+                  span #{subfolder.rel_path}/
+              - proj_folder.contributors.each do |contributor|
+                td.folder.contribution
+                  span.percent #{subfolder.percent_credit_of(contributor)}%
+                  br
+                  span #{subfolder.num_lines_by(contributor)}
+          tr
+            - (proj_folder.num_contributors + 1).times do
+              td
         tr.contributions.table_header
           td
-            span.contributions.table_header Folders
-          - (proj_folder.contributors.count).times do
-            td
-        - proj_folder.subfolders.each do |subfolder|
-          tr id='folder_row'
-            td.folder.name id='folder.name'
-              a href="#{subfolder.full_path}"
-                span #{subfolder.rel_path}/
-            - proj_folder.contributors.each do |contributor|
-              td.folder.contribution
-                span.percent #{subfolder.percent_credit_of(contributor)}%
-                br
-                span #{subfolder.num_lines_by(contributor)}
-        tr
-          - (proj_folder.num_contributors + 1).times do
-            td
-      tr.contributions.table_header
-        td
-          span.contributions.table_header Files
-        - proj_folder.contributors.each do |contributor|
-          td.contribution
-            span #{proj_folder.num_lines_by(contributor)}
-      - proj_folder.files.each do |file|
-        tr id='file_row'
-          td.file.name
-            span #{file.filename}
+            span.contributions.table_header Files
           - proj_folder.contributors.each do |contributor|
-            td.file.contribution
-              span #{file.num_lines_by(contributor)}
+            td.contribution
+              span #{proj_folder.num_lines_by(contributor)}
+        - proj_folder.files.each do |file|
+          tr id='file_row'
+            td.file.name
+              span #{file.filename}
+            - proj_folder.contributors.each do |contributor|
+              td.file.contribution
+                span #{file.num_lines_by(contributor)}
